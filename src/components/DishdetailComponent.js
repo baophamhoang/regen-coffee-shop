@@ -4,34 +4,30 @@ import { Card, CardBody, CardImg, CardTitle, CardText } from "reactstrap";
 class DishDetail extends Component{
     constructor(props){
         super(props);
-        this.state ={
-            
+        this.state = {
         }
     }
 
-    renderComments(comments) {
+    renderComments(cmts) {
         return(
-            this.props.selectedDish.comments.map((x)=>{
+            cmts.map((x)=>{
                 return (
                     <div>
-                        <ul className="list-unstyled">
-                            <li>
-                                <p>{x.comment}</p>
-                                <p>--{x.author}, {x.date}</p>
-                            </li>
-                        </ul>
+                        <li>
+                            <p>{x.comment}</p>
+                            <p>--{x.author}, {x.date}</p>
+                        </li>
                     </div>)
             })
         )
-    }
-    
-    
-    render(){
-        
+    }  
 
-        if (this.props.selectedDish != null){         
+
+
+    render(){   
+        if (this.props.selectedDish != null){        
                 return(
-                    <div className="row">
+                    <div className="row mt-5" autoFocus>
                         <div className="col-md-5 col-12 m-1">
                             <Card>
                                 <CardImg width='100%' src={this.props.selectedDish.image} alt={this.props.selectedDish.name} />
@@ -43,7 +39,7 @@ class DishDetail extends Component{
                         </div>
                         <div className="col-md-5 col-12 m-1">
                             <h4>Comments</h4>
-                            {this.renderComments(this.props.selectedDish.comments)}
+                            <ul className="list-unstyled" >{this.renderComments(this.props.selectedDish.comments)}</ul>
                         </div>
                     </div>
                 )}

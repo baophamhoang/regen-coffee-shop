@@ -16,15 +16,16 @@ class Menu extends Component{
       this.setState({
         selectedDish: dish
       })
+      this.props.onClick(dish);
     }
 
 
     render(){
-        console.log(this.state);
+        // console.log(this.state);
         const menu = this.props.dishes.map((dish)=>{
             return (
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                  <Card onClick={()=> this.onDishSelect(dish)}>
+                  <Card key={dish} onClick={()=> this.onDishSelect(dish)}>
                     <CardImg width='100%' src={dish.image} alt={dish.name} />         
                     <CardImgOverlay>
                       <CardTitle>{dish.name}</CardTitle>
@@ -41,7 +42,7 @@ class Menu extends Component{
               {/* <div className="row">
                     {this.renderDishSelect(this.state.selectedDish)}
               </div> */}
-              <DishDetail  selectedDish={this.state.selectedDish} />
+              {/* <DishDetail  selectedDish={this.state.selectedDish} /> */}
             </div>
           );
     }
