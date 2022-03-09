@@ -5,6 +5,7 @@ import DishDetail from "./DishdetailComponent";
 import Menu from './MenuComponent';
 
 
+
 class Main extends Component{
     constructor(props){
         super(props);
@@ -14,9 +15,8 @@ class Main extends Component{
         }
     }
 
-    onDishSelect(dish){
-        this.setState({selectedDish: dish})
-        console.log(dish);
+    onDishSelect(dishId){
+        this.setState({selectedDish: dishId})
     }
 
     render(){
@@ -29,8 +29,8 @@ class Main extends Component{
                     <NavbarBrand href='/'>Logo Brand</NavbarBrand>
                     </div>
                 </Navbar>
-                <Menu  dishes={this.state.dishes} onClick={(dish)=> this.onDishSelect(dish)} />
-                <DishDetail selectedDish={this.state.selectedDish}/>
+                <Menu  dishes={this.state.dishes} onClick={(dishId)=> this.onDishSelect(dishId)} />
+                <DishDetail selectedDish={this.state.dishes.filter((dish)=> dish.id===this.state.selectedDish)}/>
             </div>
         )
     }

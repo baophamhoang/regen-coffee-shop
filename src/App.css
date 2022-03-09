@@ -35,3 +35,26 @@
     transform: rotate(360deg);
   }
 }
+
+.fading-in {
+  transition: all 1s linear 2s;
+  opacity: 1;
+}
+
+
+.fading{
+  animation-name: example;
+  animation-duration: 2s;
+}
+
+@keyframes example {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+

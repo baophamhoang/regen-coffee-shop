@@ -1,5 +1,7 @@
 import { Component } from "react/cjs/react.production.min";
-import { Card, CardBody, CardImg, CardTitle, CardText } from "reactstrap";
+import { Card, CardBody, CardImg, CardTitle, CardText, Container } from "reactstrap";
+
+var count =0;
 
 class DishDetail extends Component{
     constructor(props){
@@ -15,7 +17,7 @@ class DishDetail extends Component{
                     <div>
                         <li>
                             <p>{x.comment}</p>
-                            <p>--{x.author}, {x.date}</p>
+                            <p>--{x.author}, {new Intl.DateTimeFormat('en-us',{year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
                         </li>
                     </div>)
             })
@@ -25,26 +27,31 @@ class DishDetail extends Component{
 
 
     render(){   
-        if (this.props.selectedDish != null){        
+        const selectedDish = this.props.selectedDish[0];
+        if (selectedDish){
                 return(
-                    <div className="row mt-5" autoFocus>
+                    <Container>
+                   <div className="fading" key={selectedDish.id}>
+                    <div className="row mt-5 " >
                         <div className="col-md-5 col-12 m-1">
                             <Card>
-                                <CardImg width='100%' src={this.props.selectedDish.image} alt={this.props.selectedDish.name} />
+                                <CardImg width='100%' src={selectedDish.image} alt={selectedDish.name} />
                                 <CardBody>
-                                    <CardTitle>{this.props.selectedDish.name}</CardTitle>
-                                    <CardText>{this.props.selectedDish.description}</CardText>
+                                    <CardTitle>{selectedDish.name}</CardTitle>
+                                    <CardText>{selectedDish.description}</CardText>
                                 </CardBody>
                             </Card>
                         </div>
                         <div className="col-md-5 col-12 m-1">
                             <h4>Comments</h4>
-                            <ul className="list-unstyled" >{this.renderComments(this.props.selectedDish.comments)}</ul>
+                            <ul className="list-unstyled" >{this.renderComments(selectedDish.comments)}</ul>
                         </div>
                     </div>
+                </div>
+                </Container>
                 )}
             else {
-                return (<div></div>)
+                return (<div ></div>)
             }
         
     }
