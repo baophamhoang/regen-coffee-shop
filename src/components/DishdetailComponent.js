@@ -1,8 +1,7 @@
-import { Card, CardBody, CardImg, CardTitle, CardText, Container } from "reactstrap";
-
-
-
+import { Card, CardBody, CardImg, CardTitle, CardText, Container, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Link } from "react-router-dom";
 function RenderComments({cmts}) {
+    console.log(cmts);
         return(
             cmts.map((x)=>{
                 return (
@@ -23,6 +22,17 @@ function DishDetail(props){
         if (selectedDish){
                 return(
                     <Container>
+                        <div className="row">
+                            <Breadcrumb>
+                                <BreadcrumbItem><Link to={'/'}>Home</Link></BreadcrumbItem>
+                                <BreadcrumbItem><Link to={'/menu'}>Menu</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
+                            </Breadcrumb>
+                            <div className="col-12">
+                                <h3>{selectedDish.name}</h3>
+                                <hr />
+                            </div>      
+                        </div>
                    <div className="fading">
                     <div className="row mt-5 " >
                         <div className="col-md-5 col-12 m-1">
@@ -37,7 +47,7 @@ function DishDetail(props){
                         <div className="col-md-5 col-12 m-1">
                             <h4>Comments</h4>
                             <ul className="list-unstyled" >
-                                <RenderComments cmts={selectedDish.comments} />
+                                <RenderComments cmts={props.comments} />
                             </ul>
                         </div>
                     </div>

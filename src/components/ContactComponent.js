@@ -1,5 +1,7 @@
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSkype } from '@fortawesome/free-brands-svg-icons'
 import { 
     faPhone,
@@ -11,6 +13,16 @@ import {
 function Contact(props) {
     return(
         <div className="container">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Contact Us</BreadcrumbItem>
+                </Breadcrumb>
+                <div className="col-12">
+                    <h3>Contact Us</h3>
+                    <hr />
+                </div>                
+            </div>
             <div className="row row-content">
                 <div className="col-12">
                 <h3>Location Information</h3>

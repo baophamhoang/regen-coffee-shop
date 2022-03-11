@@ -13,7 +13,7 @@ function Header(){
                 <div className="container">
                     <NavbarToggler onClick={()=>{setIsOpened(!isOpened)}} className='mr-2' />
                     <NavbarBrand className="mr-auto" href="/">
-                        <img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' />
+                        <img src='/assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' />
                     </NavbarBrand>
                     <Collapse isOpen={isOpened} navbar>
                         <Nav navbar>
