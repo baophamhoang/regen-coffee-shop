@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-
 import { DISHES } from './shared/dishes';
-import { Component } from 'react/cjs/react.production.min';
+import { Component } from 'react'
 import Main from './components/MainComponent';
 
 class App extends Component {
@@ -15,14 +13,6 @@ class App extends Component {
 
   render(){
     return (
-      // <div className="App">
-      //   <Navbar dark color="primary">
-      //       <div className='container'>
-      //         <NavbarBrand href='/'>Logo Brand</NavbarBrand>
-      //       </div>
-      //     </Navbar>
-      //   <Menu  dishes={this.state.dishes} />
-      // </div>
       <Main/>
     );
   }
