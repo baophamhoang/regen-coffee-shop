@@ -151,11 +151,11 @@ function Contact(props) {
                                     <Control.text model=".firstname" id="firstname" name="firstname"
                                         placeholder="First Name"
                                         className="form-control"
-                                        validators={{
+                                        validators={[
                                             required,
-                                            minLength :minLength(3),
-                                            maxLength: maxLength(15)
-                                        }}
+                                            minLength(3),
+                                            maxLength(15)
+                                        ]}
                                          />
                                     <Errors 
                                         className='text-danger'

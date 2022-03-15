@@ -1,27 +1,121 @@
-import { Card, CardBody, CardImg, CardTitle, CardText, Container, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Card, CardBody, CardImg, CardTitle, CardText, Container, 
+    Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody,
+    Row, Col, Label } from "reactstrap";
 import { Link } from "react-router-dom";
-function RenderComments({cmts}) {
-    console.log(cmts);
-        return(
-            cmts.map((x)=>{
-                return (
-                    <div key={x.id}>
-                        <li>
-                            <p>{x.comment}</p>
-                            <p>--{x.author}, {new Intl.DateTimeFormat('en-us',{year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
-                        </li>
-                    </div>)
-            })
-        )
-    }  
+// import Icon
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencil } from '@fortawesome/free-solid-svg-icons'
+// hooks
+import { useState  } from "react";
+import { Control, LocalForm, Errors } from 'react-redux-form'
 
-
-
+const validations = {
+    minAuthorLength: len => val => val && val.length >= len,
+    maxAuthorLength: len => val => !(val) || (val.length <= len)
+}
+    
 function DishDetail(props){   
+
+        const [isModalOpened, setIsModalOpened] = useState(false);
+
+        function RenderComments({cmts}) {
+                return(
+                    cmts.map((x)=>{
+                        return (
+                            <div key={x.id}>
+                                <li>
+                                    <p>{x.comment}</p>
+                                    <p>--{x.author}, {new Intl.DateTimeFormat('en-us',{year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
+                                </li>
+                            </div>)
+                    })
+                )
+            }  
+
+
+        function CommentForm({onClick}){
+            return (
+                <Button color='secondary' outline onClick={onClick}>
+                    <FontAwesomeIcon icon={faPencil}>
+                        
+                    </FontAwesomeIcon> Submit Comment
+                </Button>
+            )
+        }
+
+        const handleCommentBtnClick = () => {
+            setIsModalOpened(!isModalOpened)
+        }
+
+        const handleCommentFormSubmit = (e) => {
+            alert(JSON.stringify(e))
+
+        }
+
         const selectedDish = props.selectedDish[0];
         if (selectedDish){
                 return(
                     <Container>
+                        <Modal isOpen={isModalOpened} toggle={()=>{setIsModalOpened()}} centered>
+                            <ModalHeader>Submit Comment</ModalHeader>
+                            <ModalBody>
+                                <LocalForm onSubmit={handleCommentFormSubmit}>
+                                    <Row className='form-group'>
+                                        <Label htmlFor='rating' xl={3}>Rating</Label>
+                                        <Col xl={9}>
+                                            <Control.select defaultValue='5' model=".rating" id="rating" name="rating"
+                                            placeholder=""
+                                            className="form-control"
+                                            >
+                                                <option value='5'>5</option>
+                                                <option value='4'>4</option>
+                                                <option value='3'>3</option>
+                                                <option value='2'>2</option>
+                                                <option value='1'>1</option>
+                                            </Control.select>
+                                        </Col>
+                                    </Row>
+                                    <Row className='form-group'>
+                                        <Label htmlFor='author' xl={3}>Your name</Label>
+                                        <Col xl={9}>
+                                            <Control.text model=".author" id="author" name="author"
+                                            placeholder=""
+                                            className="form-control"
+                                            validators={{
+                                                minLength : validations.minAuthorLength(3),
+                                                maxLength : validations.maxAuthorLength(15)
+                                            }}
+                                            />
+                                            <Errors
+                                                className="text-danger"
+                                                model='.author'
+                                                show='touched'
+                                                messages={{
+                                                    minLength: 'Must be greater than 2 characters. ',
+                                                    maxLength: 'Must be 15 characters or less. '
+                                                }}
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row className='form-group'>
+                                        <Label htmlFor='comment' xl={3}>Comment</Label>
+                                        <Col xl={9}>
+                                            <Control.textarea defaultValue='' model=".comment" id="comment" name="comment"
+                                            className="form-control"
+                                            rows="6"
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row className="form-group">
+                                        <Col xl={{size:9, offset: 3}}>
+                                            <Button type="submit" color="primary">
+                                            Send Feedback
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </LocalForm>
+                            </ModalBody>
+                        </Modal>
                         <div className="row">
                             <Breadcrumb>
                                 <BreadcrumbItem><Link to={'/'}>Home</Link></BreadcrumbItem>
@@ -33,25 +127,26 @@ function DishDetail(props){
                                 <hr />
                             </div>      
                         </div>
-                   <div className="fading">
-                    <div className="row mt-5 " >
-                        <div className="col-md-5 col-12 m-1">
-                            <Card>
-                                <CardImg width='100%' src={selectedDish.image} alt={selectedDish.name} />
-                                <CardBody>
-                                    <CardTitle>{selectedDish.name}</CardTitle>
-                                    <CardText>{selectedDish.description}</CardText>
-                                </CardBody>
-                            </Card>
+                        <div className="fading">
+                            <div className="row mt-5 " >
+                                <div className="col-md-5 col-12 m-1">
+                                    <Card>
+                                        <CardImg width='100%' src={selectedDish.image} alt={selectedDish.name} />
+                                        <CardBody>
+                                            <CardTitle>{selectedDish.name}</CardTitle>
+                                            <CardText>{selectedDish.description}</CardText>
+                                        </CardBody>
+                                    </Card>
+                                </div>
+                                <div className="col-md-5 col-12 m-1">
+                                    <h4>Comments</h4>
+                                    <ul className="list-unstyled" >
+                                        <RenderComments cmts={props.comments} />
+                                        <CommentForm onClick={handleCommentBtnClick} />
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-md-5 col-12 m-1">
-                            <h4>Comments</h4>
-                            <ul className="list-unstyled" >
-                                <RenderComments cmts={props.comments} />
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 </Container>
                 )}
             else {
