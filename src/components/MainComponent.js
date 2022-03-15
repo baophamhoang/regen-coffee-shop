@@ -1,8 +1,3 @@
-import { Component } from "react/cjs/react.production.min";
-import { DISHES } from "../shared/dishes";
-import { COMMENTS } from '../shared/comments';
-import { LEADERS } from '../shared/leaders';
-import { PROMOTIONS} from '../shared/promotions' 
 import DishDetail from "./DishdetailComponent";
 import Header from "./HeaderComponent";
 import Menu from './MenuComponent';
@@ -11,27 +6,11 @@ import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import { Route, Routes, useParams} from 'react-router-dom'
-import { useState } from "react";
+import { useSelector } from 'react-redux'
 
 function Main(){
-    const initialData = {
-        dishes: DISHES,
-        comments: COMMENTS,
-        promotions: PROMOTIONS,
-        leaders: LEADERS,
-        selectedDish : null
-    }
-    const [data, setData] = useState(initialData)
-
-    const onDishSelect = (dishId) => {
-        setData(
-            {
-                ...data,
-                selectedDish: dishId
-            }
-            )
-    }
-
+    const data = useSelector( state => state);
+    // const [selectedDish, setSelectedDish] = useState(null)
     function HomePage(){
         return (
             <Home 
@@ -59,7 +38,7 @@ function Main(){
             <Routes>
                 <Route path='/' element={<HomePage/>} />
                 <Route exact path='/menu' element={
-                    <Menu  dishes={data.dishes} onClick={(dishId)=> onDishSelect(dishId)}/>
+                    <Menu  dishes={data.dishes} />
                     } />
                 <Route path='/menu/:dishId' element={<DishWithId />} />
                 <Route path='/contactus' element={<Contact/>} />
