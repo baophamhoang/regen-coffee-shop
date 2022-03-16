@@ -8,6 +8,11 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 // hooks
 import { useState  } from "react";
 import { Control, LocalForm, Errors } from 'react-redux-form'
+import { useDispatch } from 'react-redux'
+import { v4 as uuidv4} from 'uuid';
+import { addComment } from '../redux/actions';
+
+
 
 const validations = {
     minAuthorLength: len => val => val && val.length >= len,
@@ -15,7 +20,7 @@ const validations = {
 }
     
 function DishDetail(props){   
-
+        const dispatch = useDispatch();
         const [isModalOpened, setIsModalOpened] = useState(false);
 
         function RenderComments({cmts}) {
@@ -48,7 +53,13 @@ function DishDetail(props){
         }
 
         const handleCommentFormSubmit = (e) => {
-            alert(JSON.stringify(e))
+            const payload = {...e};
+            payload.id = uuidv4();
+            payload.date = new Date().toISOString();
+            payload.dishId = selectedDish.id;
+            dispatch(addComment(payload))
+            // alert(JSON.stringify(payload));
+            setIsModalOpened(!isModalOpened);
 
         }
 
