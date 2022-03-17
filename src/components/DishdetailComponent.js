@@ -11,6 +11,8 @@ import { Control, LocalForm, Errors } from 'react-redux-form'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4} from 'uuid';
 import { addComment } from '../redux/actions';
+import Loading from "./LoadingComponent";
+import ErrorMsg from "./ErrorComponent";
 
 
 
@@ -20,9 +22,9 @@ const validations = {
 }
     
 function DishDetail(props){   
+    console.log(props);
         const dispatch = useDispatch();
         const [isModalOpened, setIsModalOpened] = useState(false);
-
         function RenderComments({cmts}) {
                 return(
                     cmts.map((x)=>{
@@ -62,9 +64,26 @@ function DishDetail(props){
             setIsModalOpened(!isModalOpened);
 
         }
-
         const selectedDish = props.selectedDish[0];
-        if (selectedDish){
+        if (props.isLoading){
+            return ( 
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            )
+          }
+          else if (props.errorMsg){
+            return (
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            )
+          }
+          else if (selectedDish){
                 return(
                     <Container>
                         <Modal isOpen={isModalOpened} toggle={()=>{setIsModalOpened()}} centered>
@@ -160,9 +179,11 @@ function DishDetail(props){
                         </div>
                 </Container>
                 )}
+                
             else {
                 return (<div ></div>)
             }
+        
         
     }
 

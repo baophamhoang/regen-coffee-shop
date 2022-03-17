@@ -1,19 +1,27 @@
 import React from 'react';
 import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import ErrorMsg from './ErrorComponent';
+import Loading from './LoadingComponent';
 
-function RenderCard({item}) {
-  return(
-    <Card>
-      <CardImg src={item.image} alt={item.name}/>
-      <CardBody>
-        <CardTitle>{item.name}</CardTitle>
-        {item.designation? <CardSubtitle>
-          {item.designation}
-          </CardSubtitle>: null}
-          <CardText></CardText>
-      </CardBody>
-    </Card>
-  )
+function RenderCard({item, isLoading, errorMsg}) {
+  if (isLoading){
+    return (<Loading/>)
+  }
+  else if (errorMsg){
+    return (<ErrorMsg msg={errorMsg}/>)
+  }
+  else return (
+  <Card>
+    <CardImg src={item.image} alt={item.name}/>
+    <CardBody>
+      <CardTitle>{item.name}</CardTitle>
+      {item.designation? <CardSubtitle>
+        {item.designation}
+        </CardSubtitle>: null}
+        <CardText></CardText>
+    </CardBody>
+  </Card>
+)
 }
 
 function Home(props) {
@@ -21,7 +29,11 @@ function Home(props) {
       <div className="container">
           <div className="row align-items-start">
               <div className="col-12 col-md m-1">
-                  <RenderCard item={props.dish} />
+                  <RenderCard 
+                    item={props.dish} 
+                    isLoading={props.isLoading} 
+                    errorMsg={props.errorMsg}
+                    />
               </div>
               <div className="col-12 col-md m-1">
                   <RenderCard item={props.promotion} />
