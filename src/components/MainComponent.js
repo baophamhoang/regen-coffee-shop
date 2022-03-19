@@ -9,6 +9,7 @@ import { Route, Routes, useParams} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { fetchDishes } from "../redux/actions";
+import { actions } from 'react-redux-form'
 
 function Main(){
     const data = useSelector( state => state);
@@ -17,7 +18,6 @@ function Main(){
         console.log('test');
         dispatch(fetchDishes());
     },[])
-    console.log(data);
 
     // const [selectedDish, setSelectedDish] = useState(null)
     function HomePage(){
@@ -58,7 +58,9 @@ function Main(){
                          />
                     } />
                 <Route path='/menu/:dishId' element={<DishWithId />} />
-                <Route path='/contactus' element={<Contact/>} />
+                <Route path='/contactus' element={<Contact resetFeedbackForm={()=>{
+                    dispatch(actions.reset('feedback'))
+                }}/>} />
                 <Route path='/aboutus' element={<About leaders={data.leaders}/>} />
                 <Route path="*" element={<HomePage/>}/>
             </Routes>

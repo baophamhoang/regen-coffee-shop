@@ -5,7 +5,7 @@ import React,
     } from 'react';
 import { Breadcrumb, BreadcrumbItem,
             Button, Label, Col, Row} from 'reactstrap';
-import { Control, LocalForm, Errors} from 'react-redux-form'
+import { Control, LocalForm, Form, actions,  Errors} from 'react-redux-form'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSkype } from '@fortawesome/free-brands-svg-icons'
@@ -15,6 +15,9 @@ import {
     faEnvelope,
     faEnvelopeOpen
  } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux';
+import { addFeedbacks } from '../redux/actions';
+import { v4 as uuidv4} from 'uuid';
 
 //  Validations
 const required = (val) => val && val.length;
@@ -40,67 +43,66 @@ function Contact(props) {
             email: false
         }
     }
-
+    const dispatch = useDispatch();
     const [input, setInput] = useState(initialInput);
-    console.log(input);
-
-    const handleInputChange  = e => {
-        setInput(
-            {
-                ...input,
-                [e.target.name]: e.target.value
-            }
-        )
+    // const handleInputChange  = e => {
+    //     setInput(
+    //         {
+    //             ...input,
+    //             [e.target.name]: e.target.value
+    //         }
+    //     )
     
-    }
+    // }
     
-        const handleBlur = (e) => {
-            console.log(e);
-            setInput(
-                {
-                    ...input,
-                    touched: {
-                        ...input.touched,
-                        [e.target.name]: true
-                    }
-                }
-            )
-        }
+    // const handleBlur = (e) => {
+    //     console.log(e);
+    //     setInput(
+    //         {
+    //             ...input,
+    //             touched: {
+    //                 ...input.touched,
+    //                 [e.target.name]: true
+    //             }
+    //         }
+    //     )
+    // }
 
-    const handleSubmit = e => {
-        console.log(JSON.stringify(input));
+    // const validate = (firstname, lastname, telnum, email) =>{
+    //     const errors = {
+    //         firstname: '',
+    //         lastname: '',
+    //         telnum: '',
+    //         email: ''
+    //     };
+
+    //     if (input.touched.firstname && firstname.length < 3)
+    //         errors.firstname = 'First Name should be >= 3 characters';
+    //     else if (input.touched.firstname && firstname.length > 10)
+    //         errors.firstname = 'First Name should be <= 10 characters';
+
+    //     if (input.touched.lastname && lastname.length < 3)
+    //         errors.lastname = 'Last Name should be >= 3 characters';
+    //     else if (input.touched.lastname && lastname.length > 10)
+    //         errors.lastname = 'Last Name should be <= 10 characters';
+
+    //     const reg = /^\d+$/;
+    //     if (input.touched.telnum && !reg.test(telnum))
+    //         errors.telnum = 'Tel. Number should contain only numbers';
+
+    //     if(input.touched.email && email.split('').filter(x => x === '@').length !== 1)
+    //         errors.email = 'Email should contain a @';
+
+    //     return errors;
+    // }
+    
+    const handleSubmit = (e, id) => {
+        const payload = {...e};
+        payload.id = uuidv4();
+        payload.date = new Date().toISOString();
+        dispatch(addFeedbacks(payload))
     }
 
-    const validate = (firstname, lastname, telnum, email) =>{
-        const errors = {
-            firstname: '',
-            lastname: '',
-            telnum: '',
-            email: ''
-        };
-
-        if (input.touched.firstname && firstname.length < 3)
-            errors.firstname = 'First Name should be >= 3 characters';
-        else if (input.touched.firstname && firstname.length > 10)
-            errors.firstname = 'First Name should be <= 10 characters';
-
-        if (input.touched.lastname && lastname.length < 3)
-            errors.lastname = 'Last Name should be >= 3 characters';
-        else if (input.touched.lastname && lastname.length > 10)
-            errors.lastname = 'Last Name should be <= 10 characters';
-
-        const reg = /^\d+$/;
-        if (input.touched.telnum && !reg.test(telnum))
-            errors.telnum = 'Tel. Number should contain only numbers';
-
-        if(input.touched.email && email.split('').filter(x => x === '@').length !== 1)
-            errors.email = 'Email should contain a @';
-
-        return errors;
-    }
-
-    const errors = validate(input.firstname, input.lastname, input.telnum, input.email);
- 
     return(
         <div className="container">
             <div className="row">
@@ -144,7 +146,7 @@ function Contact(props) {
                       <h3>Send us your Feedback</h3>
                    </div>
                     <div className="col-12 col-md-9">
-                    <LocalForm onSubmit={(values) => handleSubmit(values)}>
+                    <LocalForm onSubmit={(e, id) => handleSubmit(e)}>
                             <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
@@ -244,8 +246,8 @@ function Contact(props) {
                                 <Col md={{size: 6, offset: 2}}>
                                     <div className="form-check">
                                         <Label check>
-                                            <Control.checkbox model=".agree" name="agree"
-                                                className="form-check-input"
+                                            <Control.checkbox model=".agree" name="agree" defaultValue={false}
+                                                className="form-check-input"  
                                                  /> {' '}
                                                 <strong>May we contact you?</strong>
                                         </Label>
@@ -253,7 +255,7 @@ function Contact(props) {
                                 </Col>
                                 <Col md={{size: 3, offset: 1}}>
                                     <Control.select model=".contactType" name="contactType"
-                                        className="form-control">
+                                        className="form-control" defaultValue='Tel.'>
                                         <option>Tel.</option>
                                         <option>Email</option>
                                     </Control.select>

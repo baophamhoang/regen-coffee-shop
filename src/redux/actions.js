@@ -3,7 +3,8 @@ import {
     ADD_COMMENT,
     ADD_DISHES,
     DISHES_LOADING,
-    DISHES_FAILED
+    DISHES_FAILED,
+    ADD_FEEDBACKS
  } from "./actionTypes";
 
 export const addComment = (payload) => {
@@ -26,6 +27,12 @@ export const dishesFailed = (payload) => {
 export const addDishes = (payload) => {
     return ({
         type: ADD_DISHES,
+        payload
+    })
+}
+export const addFeedbacks = (payload) => {
+    return ({
+        type: ADD_FEEDBACKS,
         payload
     })
 }
