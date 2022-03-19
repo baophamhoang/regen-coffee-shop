@@ -14,7 +14,7 @@ function About(props) {
         return (
                 <Media className='mb-2'>
                     <Media left top>
-                        <Media object src={leader.image}  alt={leader.designation}/>
+                        <Media object src={'assets/'.concat(leader.image)}  alt={leader.designation}/>
                     </Media>
                     <Media body className="ml-5" >
                         <Media heading >{leader.name}</Media>

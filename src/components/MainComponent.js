@@ -8,26 +8,29 @@ import About from "./AboutComponent";
 import { Route, Routes, useParams} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from "react";
-import { fetchDishes } from "../redux/actions";
+import { fetchDishes, fetchPromos, fetchComments } from "../redux/actions";
 import { actions } from 'react-redux-form'
 
 function Main(){
     const data = useSelector( state => state);
     const dispatch = useDispatch();
     useEffect(()=>{
-        console.log('test');
         dispatch(fetchDishes());
+        dispatch(fetchComments());
+        dispatch(fetchPromos());
     },[])
-
+    
     // const [selectedDish, setSelectedDish] = useState(null)
     function HomePage(){
         return (
             <Home 
                 dish={data.dishes.dishes.filter((dish) => dish.featured)[0]}
-                promotion={data.promotions.filter((promo) => promo.featured)[0]}
+                promotion={data.promotions.promotions.filter((promo) => promo.featured)[0]}
+                promoLoading={data.promotions.isLoading}
+                promoErrorMsg={data.promotions.errMess}
                 leader={data.leaders.filter((leader) => leader.featured)[0]}  
-                isLoading={data.dishes.isLoading}
-                errorMsg={data.dishes.errorMsg}
+                dishesLoading={data.dishes.isLoading}
+                dishErrorMsg={data.dishes.errorMsg}
             />
         )
     }
@@ -41,6 +44,7 @@ function Main(){
                 comments={data.comments.filter((cmt)=>cmt.dishId===parseInt(dishId))}
                 isLoading={data.dishes.isLoading}
                 errorMsg={data.dishes.errorMsg}
+                cmtErrorMsg={data.comments.errorMsg}
             />
         )
     }

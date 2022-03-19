@@ -1,13 +1,30 @@
-import { COMMENTS } from '../shared/comments';
-import { ADD_COMMENT } from './actionTypes';
 
-const commentsReducer = (state = COMMENTS, action) => {
+import { ADD_COMMENT,
+        ADD_COMMENTS, 
+        COMMENTS_FAILED} from './actionTypes';
+
+const commentsReducer = (state = { comments: [], errorMsg: null}, action) => {
     switch(action.type){
         case ADD_COMMENT:
-            return ([
+            return {
                 ...state,
-                action.payload
-            ])
+                errorMsg: null,
+                comments: [
+                    ...state.comments,
+                    action.payload
+                ]
+            }
+        case ADD_COMMENTS:
+            return {
+                ...state,
+                errorMsg: null,
+                comments: action.payload
+            }
+        case COMMENTS_FAILED:
+            return {
+                ...state,
+                errorMsg: action.payload
+            }
         default: 
          return state;
     }
