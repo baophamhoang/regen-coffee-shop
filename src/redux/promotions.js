@@ -11,25 +11,25 @@ const promotionsReducer = (state = {
                             }, action) => {
     switch(action.type){
         case ADD_PROMOS:
-            return {
+            return ({
                 ...state,
                 isLoading: false,
                 errorMsg: null,
                 promotions: action.payload
-            }
+            })
         case PROMOS_LOADING:
-            return {
+            return ({
                 ...state,
                 isLoading: true,
                 errorMsg: null,
                 // promotions: []
-            }
+            })
         case PROMOS_FAILED:
-            return {
+            return ({
                 ...state,
                 isLoading: false,
                 errorMsg: action.payload
-            }
+            })
         default: 
             return state;
     }

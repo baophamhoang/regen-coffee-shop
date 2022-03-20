@@ -6,6 +6,8 @@ import { baseUrl } from '../shared/baseUrl'
 
 function RenderCard({item, isLoading, errorMsg}) {
   console.log(item);
+  console.log(isLoading);
+  console.log(errorMsg);
   if (isLoading){
     return (<Loading/>)
   }

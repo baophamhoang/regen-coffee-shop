@@ -27,7 +27,7 @@ function Main(){
                 dish={data.dishes.dishes.filter((dish) => dish.featured)[0]}
                 promotion={data.promotions.promotions.filter((promo) => promo.featured)[0]}
                 promoLoading={data.promotions.isLoading}
-                promoErrorMsg={data.promotions.errMess}
+                promoErrorMsg={data.promotions.errorMsg}
                 leader={data.leaders.filter((leader) => leader.featured)[0]}  
                 dishesLoading={data.dishes.isLoading}
                 dishErrorMsg={data.dishes.errorMsg}

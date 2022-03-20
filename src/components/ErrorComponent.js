@@ -1,5 +1,5 @@
-export default function ErrorMsg( props ){
+export default function ErrorMsg( {msg} ){
     return (
-        <h4>{props}</h4>
+        <h4>{msg}</h4>
     )
 }
