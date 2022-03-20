@@ -37,11 +37,10 @@ function Main(){
 
     function DishWithId(){
         const {dishId} = useParams();
-        console.log(dishId);
         return(
             <DishDetail 
                 selectedDish={data.dishes.dishes.filter((dish)=> dish.id=== parseInt(dishId))}
-                comments={data.comments.filter((cmt)=>cmt.dishId===parseInt(dishId))}
+                comments={data.comments.comments.filter((cmt)=>cmt.dishId===parseInt(dishId))}
                 isLoading={data.dishes.isLoading}
                 errorMsg={data.dishes.errorMsg}
                 cmtErrorMsg={data.comments.errorMsg}

@@ -9,10 +9,11 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { useState  } from "react";
 import { Control, LocalForm, Errors } from 'react-redux-form'
 import { useDispatch } from 'react-redux'
-import { v4 as uuidv4} from 'uuid';
+// import { v4 as uuidv4} from 'uuid';
 import { addComment } from '../redux/actions';
+import { postComment } from "../redux/actions";
 import Loading from "./LoadingComponent";
-import ErrorMsg from "./ErrorComponent";
+import { baseUrl } from '../shared/baseUrl'
 
 
 
@@ -27,9 +28,9 @@ function DishDetail(props){
         const [isModalOpened, setIsModalOpened] = useState(false);
         function RenderComments({cmts}) {
                 return(
-                    cmts.map((x)=>{
+                    cmts.map((x, id)=>{
                         return (
-                            <div key={x.id}>
+                            <div key={id}>
                                 <li>
                                     <p>{x.comment}</p>
                                     <p>--{x.author}, {new Intl.DateTimeFormat('en-us',{year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
@@ -56,11 +57,12 @@ function DishDetail(props){
 
         const handleCommentFormSubmit = (e) => {
             const payload = {...e};
-            payload.id = uuidv4();
+            payload.rating = Number(payload.rating);
+            // payload.id = uuidv4();
             payload.date = new Date().toISOString();
             payload.dishId = selectedDish.id;
-            dispatch(addComment(payload))
-            // alert(JSON.stringify(payload));
+            // dispatch(addComment(payload))
+            dispatch(postComment(payload));
             setIsModalOpened(!isModalOpened);
 
         }
@@ -161,7 +163,7 @@ function DishDetail(props){
                             <div className="row mt-5 " >
                                 <div className="col-md-5 col-12 m-1">
                                     <Card>
-                                        <CardImg width='100%' src={selectedDish.image} alt={selectedDish.name} />
+                                        <CardImg width='100%' src={baseUrl + selectedDish.image} alt={selectedDish.name} />
                                         <CardBody>
                                             <CardTitle>{selectedDish.name}</CardTitle>
                                             <CardText>{selectedDish.description}</CardText>
