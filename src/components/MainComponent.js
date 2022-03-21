@@ -5,15 +5,20 @@ import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
-import { Route, Routes, useParams} from 'react-router-dom'
+import { Route, Routes, useParams, useLocation} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { fetchDishes, fetchPromos, fetchComments } from "../redux/actions";
 import { actions } from 'react-redux-form'
+import { 
+    TransitionGroup,
+    CSSTransition
+ } from 'react-transition-group'
 
 function Main(){
     const data = useSelector( state => state);
     const dispatch = useDispatch();
+    const location = useLocation();
     useEffect(()=>{
         dispatch(fetchDishes());
         dispatch(fetchComments());
@@ -37,6 +42,7 @@ function Main(){
 
     function DishWithId(){
         const {dishId} = useParams();
+        console.log(dishId);
         return(
             <DishDetail 
                 selectedDish={data.dishes.dishes.filter((dish)=> dish.id=== parseInt(dishId))}
@@ -51,22 +57,26 @@ function Main(){
     return (
         <div className="App">
             <Header/>
-            <Routes>
-                <Route path='/' element={<HomePage/>} />
-                <Route exact path='/menu' element={
-                    <Menu  
-                        dishes={data.dishes.dishes}
-                        isLoading={data.dishes.isLoading}
-                        errorMsg={data.dishes.errorMsg}
-                         />
-                    } />
-                <Route path='/menu/:dishId' element={<DishWithId />} />
-                <Route path='/contactus' element={<Contact resetFeedbackForm={()=>{
-                    dispatch(actions.reset('feedback'))
-                }}/>} />
-                <Route path='/aboutus' element={<About leaders={data.leaders}/>} />
-                <Route path="*" element={<HomePage/>}/>
-            </Routes>
+            <TransitionGroup >
+                <CSSTransition classNames="page" timeout={300} key={location.key}>
+                    <Routes location={location}>
+                        <Route path='/' element={<HomePage/>} />
+                        <Route exact path='/menu' element={
+                            <Menu  
+                            dishes={data.dishes.dishes}
+                            isLoading={data.dishes.isLoading}
+                            errorMsg={data.dishes.errorMsg}
+                            />
+                        } />
+                        <Route path='/menu/:dishId' element={<DishWithId />} />
+                        <Route path='/contactus' element={<Contact resetFeedbackForm={()=>{
+                            dispatch(actions.reset('feedback'))
+                        }}/>} />
+                        <Route path='/aboutus' element={<About leaders={data.leaders}/>} />
+                        <Route path="*" element={<HomePage/>}/>
+                    </Routes>
+                </CSSTransition>
+            </TransitionGroup>
             <Footer/>
         </div>
     )

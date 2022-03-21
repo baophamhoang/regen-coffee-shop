@@ -20,7 +20,7 @@ function RenderCard({item, isLoading, errorMsg}) {
       {item.designation? <CardSubtitle>
         {item.designation}
         </CardSubtitle>: null}
-        <CardText></CardText>
+        <CardText className='d-none d-lg-block'>{item.description}</CardText>
     </CardBody> 
   </Card>
 )

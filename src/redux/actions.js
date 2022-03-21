@@ -50,7 +50,6 @@ export const fetchComments = () => (dispatch) => {
       .catch(error => dispatch(commentsFailed(error.message)))
 };
 export const postComment = (payload) => (dispatch) => {
-    console.log(payload);
     return fetch(baseUrl + 'comments', {
         method: 'POST',
         body: JSON.stringify(payload),
