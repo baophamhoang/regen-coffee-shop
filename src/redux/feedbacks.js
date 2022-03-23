@@ -1,4 +1,4 @@
-import { ADD_FEEDBACKS } from "./actionTypes";
+import { ADD_FEEDBACKS, POST_FEEDBACKS } from "./actionTypes";
 
 
  const feedbackReducer = (state = [] , action) => {

@@ -1,8 +1,4 @@
-import React, 
-    { 
-        Component ,
-        useState,
-    } from 'react';
+import React from 'react';
 import { Breadcrumb, BreadcrumbItem,
             Button, Label, Col, Row} from 'reactstrap';
 import { Control, LocalForm, Form, actions,  Errors} from 'react-redux-form'
@@ -16,7 +12,7 @@ import {
     faEnvelopeOpen
  } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux';
-import { addFeedbacks } from '../redux/actions';
+import { addFeedbacks, postFeedbacks } from '../redux/actions';
 import { v4 as uuidv4} from 'uuid';
 
 //  Validations
@@ -27,24 +23,24 @@ const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 
-function Contact(props) {
-    const initialInput = {
-        firstname: '',
-        lastname: '',
-        telnum: '',
-        email: '',
-        agree: false,
-        contactType: 'Tel.',
-        message: '',
-        touched: {
-            firstname: false,
-            lastname: false,
-            telnum: false,
-            email: false
-        }
-    }
+function Contact({resetFeedbackForm}) {
+    // const initialInput = {
+    //     firstname: '',
+    //     lastname: '',
+    //     telnum: '',
+    //     email: '',
+    //     agree: false,
+    //     contactType: 'Tel.',
+    //     message: '',
+    //     touched: {
+    //         firstname: false,
+    //         lastname: false,
+    //         telnum: false,
+    //         email: false
+    //     }
+    // }
+    // const [input, setInput] = useState(initialInput);
     const dispatch = useDispatch();
-    const [input, setInput] = useState(initialInput);
     // const handleInputChange  = e => {
     //     setInput(
     //         {
@@ -100,7 +96,7 @@ function Contact(props) {
         const payload = {...e};
         payload.id = uuidv4();
         payload.date = new Date().toISOString();
-        dispatch(addFeedbacks(payload))
+        dispatch(postFeedbacks(payload));
     }
 
     return(
@@ -146,7 +142,7 @@ function Contact(props) {
                       <h3>Send us your Feedback</h3>
                    </div>
                     <div className="col-12 col-md-9">
-                    <LocalForm onSubmit={(e, id) => handleSubmit(e)}>
+                    <LocalForm model='.feedback' onSubmit={(e, id) => handleSubmit(e)}>
                             <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>

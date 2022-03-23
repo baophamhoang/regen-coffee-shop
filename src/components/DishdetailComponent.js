@@ -10,11 +10,10 @@ import { useState  } from "react";
 import { Control, LocalForm, Errors } from 'react-redux-form'
 import { useDispatch } from 'react-redux'
 // import { v4 as uuidv4} from 'uuid';
-import { addComment } from '../redux/actions';
 import { postComment } from "../redux/actions";
 import Loading from "./LoadingComponent";
 import { baseUrl } from '../shared/baseUrl'
-
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 
 const validations = {
@@ -28,15 +27,18 @@ function DishDetail(props){
         const [isModalOpened, setIsModalOpened] = useState(false);
         function RenderComments({cmts}) {
                 return(
-                    cmts.map((x, id)=>{
+                    <Stagger in>
+                    {cmts.map((x, id)=>{
                         return (
-                            <div key={id}>
-                                <li>
+                            <Fade in>
+                                <li key={id}>
                                     <p>{x.comment}</p>
                                     <p>--{x.author}, {new Intl.DateTimeFormat('en-us',{year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
                                 </li>
-                            </div>)
-                    })
+                            </Fade>
+                            )
+                    })}
+                     </Stagger>
                 )
             }  
 
@@ -162,13 +164,17 @@ function DishDetail(props){
                         <div className="fading">
                             <div className="row mt-5 " >
                                 <div className="col-md-5 col-12 m-1">
-                                    <Card>
-                                        <CardImg width='100%' src={baseUrl + selectedDish.image} alt={selectedDish.name} />
-                                        <CardBody>
-                                            <CardTitle>{selectedDish.name}</CardTitle>
-                                            <CardText>{selectedDish.description}</CardText>
-                                        </CardBody>
-                                    </Card>
+                                    <FadeTransform in transformProps={{
+                                            exitTransform: 'scale(0.5) translateY(-50%)'
+                                        }}>
+                                        <Card>
+                                            <CardImg top src={baseUrl + selectedDish.image} alt={selectedDish.name} />
+                                            <CardBody>
+                                                <CardTitle>{selectedDish.name}</CardTitle>
+                                                <CardText>{selectedDish.description}</CardText>
+                                            </CardBody>
+                                        </Card>
+                                     </FadeTransform>
                                 </div>
                                 <div className="col-md-5 col-12 m-1">
                                     <h4>Comments</h4>

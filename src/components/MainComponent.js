@@ -8,7 +8,7 @@ import About from "./AboutComponent";
 import { Route, Routes, useParams, useLocation} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from "react";
-import { fetchDishes, fetchPromos, fetchComments } from "../redux/actions";
+import { fetchDishes, fetchPromos, fetchComments, fetchLeaders } from "../redux/actions";
 import { actions } from 'react-redux-form'
 import { 
     TransitionGroup,
@@ -19,11 +19,19 @@ function Main(){
     const data = useSelector( state => state);
     const dispatch = useDispatch();
     const location = useLocation();
+    console.log(location);
     useEffect(()=>{
         dispatch(fetchDishes());
         dispatch(fetchComments());
         dispatch(fetchPromos());
+        dispatch(fetchLeaders());
+
     },[])
+    useEffect(()=>{
+        console.log('re-renderred');
+    })
+
+    // useEffect(()=>{},[location])
     
     // const [selectedDish, setSelectedDish] = useState(null)
     function HomePage(){
@@ -33,9 +41,11 @@ function Main(){
                 promotion={data.promotions.promotions.filter((promo) => promo.featured)[0]}
                 promoLoading={data.promotions.isLoading}
                 promoErrorMsg={data.promotions.errorMsg}
-                leader={data.leaders.filter((leader) => leader.featured)[0]}  
                 dishesLoading={data.dishes.isLoading}
                 dishErrorMsg={data.dishes.errorMsg}
+                leader={data.leaders.leaders.filter((leader) => leader.featured)[0]}  
+                leaderLoading={data.leaders.isLoading}
+                leaderErrorMsg={data.leaders.errorMsg}
             />
         )
     }
@@ -58,7 +68,7 @@ function Main(){
         <div className="App">
             <Header/>
             <TransitionGroup >
-                <CSSTransition classNames="page" timeout={300} key={location.key}>
+                <CSSTransition classNames="page" timeout={300} key={location.pathname}>
                     <Routes location={location}>
                         <Route path='/' element={<HomePage/>} />
                         <Route exact path='/menu' element={
