@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Jumbotron } from 'reactstrap';
 import ErrorMsg from './ErrorComponent';
 import Loading from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl'
 import { FadeTransform } from 'react-animation-components'
+
 function RenderCard({item, isLoading, errorMsg}) {
 
   if (isLoading){
@@ -34,6 +35,17 @@ function RenderCard({item, isLoading, errorMsg}) {
 
 function Home(props) {
   return(
+    <React.Fragment>
+      <Jumbotron>
+                <div className="container">
+                    <div className="row row-header">
+                        <div className="col-12 col-sm-6">
+                            <h1>Ristorante con Fusion</h1>
+                            <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
+                        </div>
+                    </div>
+                </div>
+            </Jumbotron>
       <div className="container">
           <div className="row align-items-start">
               <div className="col-12 col-md m-1">
@@ -51,6 +63,7 @@ function Home(props) {
               </div>
           </div>
       </div>
+      </React.Fragment>
   );
 }
 export default Home;   

@@ -15,7 +15,6 @@ import Loading from "./LoadingComponent";
 import { baseUrl } from '../shared/baseUrl'
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
-
 const validations = {
     minAuthorLength: len => val => val && val.length >= len,
     maxAuthorLength: len => val => !(val) || (val.length <= len)

@@ -29,15 +29,19 @@ function Header(){
     return (
         <React.Fragment>
             <Navbar dark expand='md'>
-                <div className="container">
-                    <NavbarToggler onClick={()=>{setIsNavOpened(!isNavOpened)}} className='mr-2' />
-                    <NavbarBrand className="mr-auto" href="/">
-                        <img src='/assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' />
+                <div className="container justify-content-start">
+                    <NavbarToggler onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
+                    <NavbarBrand className="ml-auto mr-auto" href="/">
+                        {/* <img src='/assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /> */}
+                        <h2 style={{
+                            'font-family': 'Lucida Handwriting',
+                            'transform' : 'translateY(10%)'
+                     }}>The Restaurant</h2>
                     </NavbarBrand>
-                    <Collapse isOpen={isNavOpened} navbar>
+                    <Collapse className='ml-3' isOpen={isNavOpened} navbar>
                         <Nav navbar>
                             <NavItem>
-                                <NavLink className='nav-link' to='/home'>
+                                <NavLink className='nav-link' to='/'>
                                     <FontAwesomeIcon size="lg" icon={faHouse}/> Home
                                 </NavLink>
                             </NavItem>
@@ -65,16 +69,7 @@ function Header(){
                     </Collapse>
                 </div>
             </Navbar>
-            <Jumbotron>
-                <div className="container">
-                    <div className="row row-header">
-                        <div className="col-12 col-sm-6">
-                            <h1>Ristorante con Fusion</h1>
-                            <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
-                        </div>
-                    </div>
-                </div>
-            </Jumbotron>
+            
             <Modal isOpen={isModalOpened} toggle={handleToggleModal}>
                 <ModalHeader toggle={handleToggleModal}>Login</ModalHeader>
                 <ModalBody>

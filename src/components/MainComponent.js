@@ -14,12 +14,12 @@ import {
     TransitionGroup,
     CSSTransition
  } from 'react-transition-group'
-
+ import SlideRoutes from 'react-slide-routes';
+// import BreadcrumbComponent from "./BreadcrumbComponent";
 function Main(){
     const data = useSelector( state => state);
     const dispatch = useDispatch();
     const location = useLocation();
-    console.log(location);
     useEffect(()=>{
         dispatch(fetchDishes());
         dispatch(fetchComments());
@@ -67,9 +67,10 @@ function Main(){
     return (
         <div className="App">
             <Header/>
-            <TransitionGroup >
-                <CSSTransition classNames="page" timeout={300} key={location.pathname}>
-                    <Routes location={location}>
+                {/* {location.pathname!=='/'?<BreadcrumbComponent></BreadcrumbComponent>:null} */}
+            {/* <TransitionGroup > */}
+                {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
+                    <SlideRoutes animation='slide' duration={500} location={location}>
                         <Route path='/' element={<HomePage/>} />
                         <Route exact path='/menu' element={
                             <Menu  
@@ -84,9 +85,9 @@ function Main(){
                         }}/>} />
                         <Route path='/aboutus' element={<About leaders={data.leaders}/>} />
                         <Route path="*" element={<HomePage/>}/>
-                    </Routes>
-                </CSSTransition>
-            </TransitionGroup>
+                    </SlideRoutes>
+                {/* </CSSTransition> */}
+            {/* </TransitionGroup> */}
             <Footer/>
         </div>
     )
