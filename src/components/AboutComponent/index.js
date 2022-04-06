@@ -1,49 +1,9 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { baseUrl } from '../shared/baseUrl';
-import Loading from './LoadingComponent';
-import ErrorMsg from './ErrorComponent';
-import { Fade } from 'react-animation-components'
+import RenderLeaders from './RenderLeaders';
 
-function About({leaders}) {
-
-    function RenderLeader({leader}){
-        return (
-                <Media className='mb-2'>
-                    <Media left top>
-                        <Media object src={baseUrl+ leader.image}  alt={leader.designation}/>
-                    </Media>
-                    <Media body className="ml-5" >
-                        <Media heading >{leader.name}</Media>
-                        <Media className='mb-2'>{leader.designation}</Media>
-                        
-                        {leader.description}
-                    </Media>
-                </Media>
-        )
-    }
-
-    function RenderLeaders(){
-        if (leaders.isLoading){
-            return (<Loading/>)
-          }
-        else if (leaders.errorMsg){
-            return (<ErrorMsg msg={leaders.errorMsg}/>)
-        }
-        else return(
-            <Fade in >
-                <Media list>
-                    {leaders.leaders.map( leader => (
-                        <RenderLeader leader={leader} key={leader.id}/>
-                        ) 
-                        )}
-                </Media>
-            </Fade>
-        )
-    }
-    
-
+function About() {
     return(
         <div className="container">
             <div className="row">

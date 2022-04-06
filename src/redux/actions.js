@@ -1,4 +1,3 @@
-import { DISHES } from "../shared/dishes";
 import { 
     ADD_COMMENT,
     ADD_COMMENTS,
@@ -10,7 +9,6 @@ import {
     PROMOS_FAILED,
     PROMOS_LOADING,
     ADD_FEEDBACKS,
-    POST_FEEDBACKS,
     ADD_LEADERS,
     LEADERS_FAILED,
     LEADERS_LOADING
@@ -120,8 +118,11 @@ export const fetchDishes = () => (dispatch) => {
     .then (dishes => dispatch(addDishes(dishes)))
     .catch (error => dispatch(dishesFailed(error.message)))
 }
-
 // Promotion Actions
+// export const fetchFBPromos = () => (dispatch) => {
+//     dispatch(promosLoading());
+//     return fetch()
+// }
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading());
 
@@ -143,21 +144,17 @@ export const fetchPromos = () => (dispatch) => {
     .then(promos => dispatch(addPromos(promos)))
     .catch(error => dispatch(promosFailed(error.message)));
 }
-
 export const promosLoading = () => ({
     type: PROMOS_LOADING
 });
-
 export const promosFailed = (errmess) => ({
     type: PROMOS_FAILED,
     payload: errmess
 });
-
 export const addPromos = (promos) => ({
     type: ADD_PROMOS,
     payload: promos
 });
-
 // Feedback Actions
 export const addFeedbacks = (payload) => {
     return ({
@@ -194,7 +191,6 @@ export const postFeedbacks = (payload) => (dispatch) => {
         alert('Your feedbacks could not be posted\nError: '+error.message); 
     }) 
 }
-
 // Leaders Actions
 export const fetchLeaders = () => (dispatch) => {
     dispatch(leadersLoading);
@@ -218,7 +214,6 @@ export const fetchLeaders = () => (dispatch) => {
         .then(response => dispatch(addLeaders(response)))
         .catch(errorMsg => dispatch(leadersFailed(errorMsg.message)))
 }
-
 export const addLeaders = (payload) => {
     return {
         type: ADD_LEADERS,

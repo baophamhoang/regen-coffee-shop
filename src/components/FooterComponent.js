@@ -42,7 +42,7 @@ export default function Footer(){
                         <a className="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon></a>
                         <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon></a>
                         <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon></a>
-                        <a className="btn btn-social-icon" href="mailto:"><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon></a>
+                        <a className="btn btn-social-icon btn-vimeo" href="mailto:"><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon></a>
                     </div>
                 </div>
             </div>

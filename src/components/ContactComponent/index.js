@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem,
             Button, Label, Col, Row} from 'reactstrap';
-import { Control, LocalForm, Form, actions,  Errors} from 'react-redux-form'
+import { Control, LocalForm, Errors} from 'react-redux-form'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSkype } from '@fortawesome/free-brands-svg-icons'
@@ -12,7 +12,7 @@ import {
     faEnvelopeOpen
  } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux';
-import { addFeedbacks, postFeedbacks } from '../redux/actions';
+import {  postFeedbacks } from '../../redux/actions';
 import { v4 as uuidv4} from 'uuid';
 
 //  Validations
@@ -23,75 +23,8 @@ const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 
-function Contact({resetFeedbackForm}) {
-    // const initialInput = {
-    //     firstname: '',
-    //     lastname: '',
-    //     telnum: '',
-    //     email: '',
-    //     agree: false,
-    //     contactType: 'Tel.',
-    //     message: '',
-    //     touched: {
-    //         firstname: false,
-    //         lastname: false,
-    //         telnum: false,
-    //         email: false
-    //     }
-    // }
-    // const [input, setInput] = useState(initialInput);
+function Contact() {
     const dispatch = useDispatch();
-    // const handleInputChange  = e => {
-    //     setInput(
-    //         {
-    //             ...input,
-    //             [e.target.name]: e.target.value
-    //         }
-    //     )
-    
-    // }
-    
-    // const handleBlur = (e) => {
-    //     console.log(e);
-    //     setInput(
-    //         {
-    //             ...input,
-    //             touched: {
-    //                 ...input.touched,
-    //                 [e.target.name]: true
-    //             }
-    //         }
-    //     )
-    // }
-
-    // const validate = (firstname, lastname, telnum, email) =>{
-    //     const errors = {
-    //         firstname: '',
-    //         lastname: '',
-    //         telnum: '',
-    //         email: ''
-    //     };
-
-    //     if (input.touched.firstname && firstname.length < 3)
-    //         errors.firstname = 'First Name should be >= 3 characters';
-    //     else if (input.touched.firstname && firstname.length > 10)
-    //         errors.firstname = 'First Name should be <= 10 characters';
-
-    //     if (input.touched.lastname && lastname.length < 3)
-    //         errors.lastname = 'Last Name should be >= 3 characters';
-    //     else if (input.touched.lastname && lastname.length > 10)
-    //         errors.lastname = 'Last Name should be <= 10 characters';
-
-    //     const reg = /^\d+$/;
-    //     if (input.touched.telnum && !reg.test(telnum))
-    //         errors.telnum = 'Tel. Number should contain only numbers';
-
-    //     if(input.touched.email && email.split('').filter(x => x === '@').length !== 1)
-    //         errors.email = 'Email should contain a @';
-
-    //     return errors;
-    // }
-    
     const handleSubmit = (e, id) => {
         const payload = {...e};
         payload.id = uuidv4();

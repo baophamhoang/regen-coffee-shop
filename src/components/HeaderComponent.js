@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, Jumbotron,
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, 
             Modal, ModalBody, ModalHeader, Button, Label, FormGroup, Input, Form } from "reactstrap";
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
@@ -34,7 +34,7 @@ function Header(){
                     <NavbarBrand className="ml-auto mr-auto" href="/">
                         {/* <img src='/assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /> */}
                         <h2 style={{
-                            'font-family': 'Lucida Handwriting',
+                            'fontFamily': 'Lucida Handwriting',
                             'transform' : 'translateY(10%)'
                      }}>The Restaurant</h2>
                     </NavbarBrand>

@@ -1,23 +1,33 @@
-import DishDetail from "./DishdetailComponent";
+import About from "./AboutComponent/";
+import DishDetail from './DishdetailComponent/';
+import Menu from './MenuComponent/';
+import Contact from "./ContactComponent/";
+import Home from "./HomeComponent/";
 import Header from "./HeaderComponent";
-import Menu from './MenuComponent';
 import Footer from "./FooterComponent";
-import Home from "./HomeComponent";
-import Contact from "./ContactComponent";
-import About from "./AboutComponent";
-import { Route, Routes, useParams, useLocation} from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { Route,  useParams, useLocation} from 'react-router-dom'
+import {  useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { fetchDishes, fetchPromos, fetchComments, fetchLeaders } from "../redux/actions";
-import { actions } from 'react-redux-form'
-import { 
-    TransitionGroup,
-    CSSTransition
- } from 'react-transition-group'
- import SlideRoutes from 'react-slide-routes';
+import SlideRoutes from 'react-slide-routes'
+import  { x_master_key, x_bin_meta } from '../shared/requestHeaders';
+const url = 'https://api.jsonbin.io/v3/b/623dfa657caf5d678371f921/'
+function getAPI(){
+  fetch(url, {
+    method: 'GET',
+    headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key" : x_master_key,
+        'X-Bin-Meta' :  x_bin_meta
+    },
+    credentials: "same-origin"
+})
+.then( r=> r.json())
+.then( r => console.log(r))
+}
+
 // import BreadcrumbComponent from "./BreadcrumbComponent";
 function Main(){
-    const data = useSelector( state => state);
     const dispatch = useDispatch();
     const location = useLocation();
     useEffect(()=>{
@@ -25,41 +35,18 @@ function Main(){
         dispatch(fetchComments());
         dispatch(fetchPromos());
         dispatch(fetchLeaders());
-
+        // getAPI();
     },[])
     useEffect(()=>{
         console.log('re-renderred');
     })
-
-    // useEffect(()=>{},[location])
-    
-    // const [selectedDish, setSelectedDish] = useState(null)
-    function HomePage(){
-        return (
-            <Home 
-                dish={data.dishes.dishes.filter((dish) => dish.featured)[0]}
-                promotion={data.promotions.promotions.filter((promo) => promo.featured)[0]}
-                promoLoading={data.promotions.isLoading}
-                promoErrorMsg={data.promotions.errorMsg}
-                dishesLoading={data.dishes.isLoading}
-                dishErrorMsg={data.dishes.errorMsg}
-                leader={data.leaders.leaders.filter((leader) => leader.featured)[0]}  
-                leaderLoading={data.leaders.isLoading}
-                leaderErrorMsg={data.leaders.errorMsg}
-            />
-        )
-    }
 
     function DishWithId(){
         const {dishId} = useParams();
         console.log(dishId);
         return(
             <DishDetail 
-                selectedDish={data.dishes.dishes.filter((dish)=> dish.id=== parseInt(dishId))}
-                comments={data.comments.comments.filter((cmt)=>cmt.dishId===parseInt(dishId))}
-                isLoading={data.dishes.isLoading}
-                errorMsg={data.dishes.errorMsg}
-                cmtErrorMsg={data.comments.errorMsg}
+                selectedDishId={dishId}
             />
         )
     }
@@ -70,22 +57,16 @@ function Main(){
                 {/* {location.pathname!=='/'?<BreadcrumbComponent></BreadcrumbComponent>:null} */}
             {/* <TransitionGroup > */}
                 {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
+
                     <SlideRoutes animation='slide' duration={500} location={location}>
-                        <Route path='/' element={<HomePage/>} />
-                        <Route exact path='/menu' element={
-                            <Menu  
-                            dishes={data.dishes.dishes}
-                            isLoading={data.dishes.isLoading}
-                            errorMsg={data.dishes.errorMsg}
-                            />
-                        } />
+                        <Route path='/' element={<Home/>} />
+                        <Route exact path='/menu' element={<Menu/>} />
                         <Route path='/menu/:dishId' element={<DishWithId />} />
-                        <Route path='/contactus' element={<Contact resetFeedbackForm={()=>{
-                            dispatch(actions.reset('feedback'))
-                        }}/>} />
-                        <Route path='/aboutus' element={<About leaders={data.leaders}/>} />
-                        <Route path="*" element={<HomePage/>}/>
+                        <Route path='/contactus' element={<Contact/>} />
+                        <Route path='/aboutus' element={<About />} />
+                        <Route path="*" element={<Home/>}/>
                     </SlideRoutes>
+
                 {/* </CSSTransition> */}
             {/* </TransitionGroup> */}
             <Footer/>
