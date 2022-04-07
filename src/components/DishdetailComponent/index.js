@@ -29,7 +29,7 @@ function DishDetail({selectedDishId}){
     
     function CommentForm({onClick}){
         return (
-            <Button color='secondary' outline onClick={onClick}>
+            <Button id='submit-btn' color='secondary' outline onClick={onClick}>
                 <FontAwesomeIcon icon={faPencil}>
                 </FontAwesomeIcon> Submit Comment
             </Button>
@@ -163,9 +163,9 @@ function DishDetail({selectedDishId}){
                             </div>
                             <div className="col-md-5 col-12 m-1">
                                 <h4>Comments</h4>
-                                <ul className="list-unstyled" >
-                                    <Comments handleCommentBtnClick={handleCommentBtnClick} CommentForm={CommentForm} dishId={selectedDishId} />
-                                </ul>
+                                
+                                <Comments handleCommentBtnClick={handleCommentBtnClick} CommentForm={CommentForm} dishId={selectedDishId} />
+                                
                             </div>
                         </div>
                     </div>

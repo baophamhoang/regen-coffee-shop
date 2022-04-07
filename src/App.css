@@ -77,9 +77,29 @@
   transform: translateX(100%);
   transition: all 300ms ease-out;
 }
+.cmt-page-numbers li{
+  display: inline;
+}
+li.page-btn{
+  cursor: pointer;
+  margin-right: 5px;
+}
+li.page-btn.active{
+  background-color: rgb(226 236 236);
+  font-weight: 700;
+  border-radius: 2px;
+}
+li.page-btn:hover{
+  font-weight: 700;
+  transition: all ease-in 0.5;
+}
+#comment-box{
+  min-height: 520px;
+}
 
-
-
+#submit-btn{
+  /* width: 80%; */
+}
 
 @keyframes example {
   from {
