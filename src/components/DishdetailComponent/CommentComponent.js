@@ -4,11 +4,11 @@ import { commentsSelector } from '../../redux/selectors'
 import CommentPages from './CommentPages';
 import CommentSection from './CommentSection';
 import { useState } from 'react';
-import {  Fade, Stagger } from 'react-animation-components'
 
-function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=5}){
+function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=4}){
     const allCmts = useSelector(commentsSelector);
     const cmts = allCmts.comments.filter(cmt=> cmt.dishId === parseInt(dishId));
+    console.log(cmts);
     const [cmtPageNum, setCmtPageNum] = useState(0);
     const getCmtPageNumbers = (len, maxCmtsPerPage) => {
         const numberOfPages = Math.ceil(len/maxCmtsPerPage);
@@ -25,10 +25,10 @@ function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=5
     if (cmtPageNum===0 || cmtPageNum===arrPageNumbers.length){
         const amountCmtsToShow = cmts.length%maxCmtsPerPage;
         if (amountCmtsToShow===0){
-            cmtToShow = [...cmts].splice(cmts.length-maxCmtsPerPage-1,maxCmtsPerPage)
+            cmtToShow = [...cmts].splice(cmts.length-maxCmtsPerPage,maxCmtsPerPage)
         }
         else {
-            cmtToShow = [...cmts].splice(cmts.length-amountCmtsToShow-1,amountCmtsToShow)
+            cmtToShow = [...cmts].splice(cmts.length-amountCmtsToShow,amountCmtsToShow)
         }
     }
     else{
@@ -38,8 +38,8 @@ function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=5
 
 
     return (
-        <Stagger in>
-            <ul className="list-unstyled mb-auto" >
+        <React.Fragment>
+            <ul className="list-unstyled " >
                 <CommentSection cmts={cmtToShow}/>
             </ul>
             <CommentPages 
@@ -48,8 +48,7 @@ function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=5
                 handlePagesBtn={handlePagesBtn}
             />
             <CommentForm onClick={handleCommentBtnClick} />
-        </Stagger>
-                 
+        </React.Fragment>      
     )
 }
 export default Comments;

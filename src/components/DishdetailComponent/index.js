@@ -49,7 +49,6 @@ function DishDetail({selectedDishId}){
         // dispatch(addComment(payload))
         dispatch(postComment(payload));
         setIsModalOpened(!isModalOpened);
-
     }
     console.log(selectedDishId);
     const selectedDish = dishesData.dishes.filter( dish => dish.id === parseInt(selectedDishId))[0];

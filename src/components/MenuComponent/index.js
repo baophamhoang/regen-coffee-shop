@@ -2,6 +2,8 @@ import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import MenuItems from "./MenuItems";
+import MenuCard from "./MenuCard";
+import "./index.css"
 
 function Menu(){
   return (
@@ -16,7 +18,9 @@ function Menu(){
             <h3>Menu</h3>
             <hr />
           </div>  
-              <MenuItems/>
+              <ul class="menu-cards col">
+                <MenuItems/>      
+              </ul>
         </div>
       </div>
     );

@@ -2,8 +2,9 @@ import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav,
             Modal, ModalBody, ModalHeader, Button, Label, FormGroup, Input, Form } from "reactstrap";
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faCircleInfo, faBars, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHouse, faCircleInfo, faBars, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import logo from '../assets/images/logo.png'
 
 
 function Header(){
@@ -31,41 +32,47 @@ function Header(){
             <Navbar dark expand='md'>
                 <div className="container justify-content-start">
                     <NavbarToggler onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
-                    <NavbarBrand className="ml-auto mr-auto" href="/">
-                        {/* <img src='/assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /> */}
+                    <NavbarBrand className="ml-auto mr-auto navbar-brand" href="/">
                         <h2 style={{
                             'fontFamily': 'Lucida Handwriting',
                             'transform' : 'translateY(10%)'
-                     }}>The Restaurant</h2>
+                     }}>REGEN</h2>
+                     {/* <img src={logo} width='80px'/> */}
+
                     </NavbarBrand>
-                    <Collapse className='ml-3' isOpen={isNavOpened} navbar>
+                    <Collapse className='ml-3 flex-row-reverse' isOpen={isNavOpened} navbar>
                         <Nav navbar>
                             <NavItem>
                                 <NavLink className='nav-link' to='/'>
-                                    <FontAwesomeIcon size="lg" icon={faHouse}/> Home
+                                    {/* <FontAwesomeIcon size="lg" icon={faHouse}/>  */}
+                                    Home
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className='nav-link' to='/aboutus'>
-                                    <FontAwesomeIcon size="lg" icon={faCircleInfo}/> About us
+                                    {/* <FontAwesomeIcon size="lg" icon={faCircleInfo}/>  */}
+                                    About us
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className='nav-link' to='/menu'>
-                                    <FontAwesomeIcon size="lg" icon={faBars}/> Menu
+                                    {/* <FontAwesomeIcon size="lg" icon={faBars}/>  */}
+                                    Menu
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className='nav-link' to='/contactus'>
-                                    <FontAwesomeIcon size="lg" icon={faAddressBook}/> Contact us
+                                    {/* <FontAwesomeIcon size="lg" icon={faAddressBook}/>  */}
+                                    Contact us
                                 </NavLink>
                             </NavItem>
                         </Nav>
-                        <Nav className="ml-auto" navbar>
+                        {/* Login Button */}
+                        {/* <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <Button outline onClick={handleToggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
                             </NavItem>
-                        </Nav>
+                        </Nav> */}
                     </Collapse>
                 </div>
             </Navbar>

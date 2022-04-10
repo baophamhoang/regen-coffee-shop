@@ -1,25 +1,36 @@
 import React from 'react';
-import { Jumbotron } from 'reactstrap';
+
 import { useSelector } from 'react-redux'
 import { allSelector } from '../../redux/selectors'
 import RenderCard from './RenderCard';
 
+const jumbotronBg = {
+  backgroundImage: `url(http://localhost:3001/images/bg.jpg)`,
+  opacity: `0.9`,
+  backgroundRepeat: `no-repeat`,
+  backgroundSize: `cover`,
+  backgroundPositionY: `+25%`,
+  }
+
 function Home() {
   const data = useSelector(allSelector);
   console.log(data.dishes);
-
+  
   return(
     <React.Fragment>
-      <Jumbotron>
+      <div className='jumbotron' style={jumbotronBg} >
         <div className="container">
             <div className="row row-header">
-                <div className="col-12 col-sm-6">
-                    <h1>Ristorante con Fusion</h1>
+                <div className="col-12 col-sm-8">
+                    <h1>REGEN</h1>
+                    
                     <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
+                    {/* <h2>17 Nguyễn Thiếp, Sơn Trà, Đà Nẵng</h2> */}
                 </div>
             </div>
         </div>
-      </Jumbotron>
+      </div>
+      {/* </Jumbotron> */}
       
       <div className="container">
           <div className="row align-items-start">
