@@ -1,12 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" 
-import { 
-    faFacebook,
-    faGoogle,
-    faLinkedin,
-    faTwitter,
-    faYoutube
- } from '@fortawesome/free-brands-svg-icons'
-import {faEnvelope} from '@fortawesome/free-regular-svg-icons'
+import SocialIcon from './SocialIconComponent'
 import {Link} from 'react-router-dom'
 
 export default function Footer(){
@@ -29,20 +21,13 @@ export default function Footer(){
 		              121, Clear Water Bay Road<br />
 		              Clear Water Bay, Kowloon<br />
 		              HONG KONG<br />
-		              <i className="fa fa-phone fa-lg"></i>: +852 1234 5678<br />
-		              <i className="fa fa-fax fa-lg"></i>: +852 8765 4321<br />
-		              <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:confusion@food.net">
-                         confusion@food.net</a>
+		             
+                       
                     </address>
                 </div>
                 <div className="col-12 col-sm-4 align-self-center">
                     <div className="text-center">
-                        <a className="btn btn-social-icon btn-google" href="http://google.com/+"><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon></a>
-                        <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></a>
-                        <a className="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon></a>
-                        <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon></a>
-                        <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon></a>
-                        <a className="btn btn-social-icon btn-vimeo" href="mailto:"><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon></a>
+                        <SocialIcon facebook twitter instagram youtube linkedin mail />
                     </div>
                 </div>
             </div>

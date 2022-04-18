@@ -1,0 +1,137 @@
+import {useEffect, useState} from 'react'
+import ErrorMsg from './FeedbackErrorMsg';
+const initalForm = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    phone: null,
+    feedback: '',
+}
+
+const required = (x) => x && x.length;
+const maxLength= (len) => (x) => !(x) || (x.length <= len);
+const minLength= (len) => (x) => x && (x.length >= len);
+const numberOnly= (x) => !isNaN(Number(x));
+const validEmail= (x) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(x);
+
+const validations = {
+    firstname:{
+        required:required, 
+        minLength: minLength(2),
+        maxLength: maxLength(10)
+    },
+    lastname: {
+        required: required, 
+        minLength: minLength(2),
+        maxLength: maxLength(10)
+    },
+    email: {
+        required:required, 
+        validEmail:validEmail
+    },
+    phone: {
+        required:required, 
+        numberOnly: numberOnly
+    },
+    feedback: {
+        required:required, 
+        minLength:minLength(10)
+    }
+}
+
+function FeedBackForm(){
+    const [formValue, setFormValue] = useState(initalForm);
+    const [errors, setErrors] = useState({
+    });
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setFormValue({
+            ...formValue, 
+             [name]: value
+        })
+    }
+    const handleBlur = (e) =>{
+        const {name, value} = e.target;
+        const valids = Object.keys(validations[name]).filter( x => !validations[name][x](value))
+        setErrors({
+            ...errors,
+            [name]: valids
+        })
+        console.log(errors);
+    }
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        if (Object.values(errors).some(v=>v.length>0)){
+            alert('Please review your feedback')
+        }
+        else alert(JSON.stringify(formValue))
+    }
+    useEffect(()=>{
+        const inputs = Object.keys(errors);
+        inputs.forEach( x => {
+            const element = document.querySelector(`.form-floating .form-control[name=${x}]`);
+            if (errors[x].length>0 && !element.classList.contains('is-invalid')){
+                element.classList.add('is-invalid')
+            }
+            if (errors[x].length===0){
+                if (element.classList.contains('is-invalid')){element.classList.remove('is-invalid')};
+                element.classList.add('is-valid')
+            }
+        })
+    },[errors])
+
+   
+    return (
+        <form onSubmit={handleSubmit} >
+            <div className="row">     
+                <div className="col-12 col-md">
+                    <div class="form-floating mb-3">
+                        <input type="text" class={`form-control`} onInput={handleInputChange} 
+                            onBlur={handleBlur} name="firstname" id="feedback-firstname" placeholder='Your firstname' required/>
+                        <label for="feedback-name">Firstname</label>
+                        <i className='feedback-error-msg'>{<ErrorMsg validations={errors.firstname}/>||''}</i>
+                    </div>
+                </div>
+                <div className="col-12 col-md">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="lastname" id="feedback-lastname" placeholder='Your lastname' required/>
+                        <label for="feedback-lastname">Surname</label>
+                        <i className='feedback-error-msg'>{<ErrorMsg validations={errors.lastname}/>||''}</i>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12 col-md">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="email" id="feedback-email" placeholder='Your email' required/>
+                        <label for="feedback-email">Email</label>
+                        <i className='feedback-error-msg'>{<ErrorMsg validations={errors.email}/>||''}</i>
+                    </div>
+                </div>
+                <div className="col-12 col-md">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="phone" id="feedback-number" placeholder='Your number'/>
+                        <label for="feedback-number">Tel number (Optional)</label>
+                        <i className='feedback-error-msg'>{<ErrorMsg validations={errors.phone}/>||''}</i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="feedback" id="feedback-textarea" placeholder='Your feedback' required style={{
+                    minHeight: '200px'
+                }}></textarea>
+                <label for="feedback-textarea">Your feedback</label> 
+                <i className='feedback-error-msg'>{<ErrorMsg validations={errors.feedback}/>||''}</i>
+            </div>
+            <div className="row">
+                <div className="col-6 offset-3 text-center">
+                    <button type="submit" class="feedback-btn btn-secondary" style={{
+                        width: '100%'
+                    }}>Submit</button>
+                </div>
+            </div>
+            
+        </form>
+    )
+}
+export default FeedBackForm;

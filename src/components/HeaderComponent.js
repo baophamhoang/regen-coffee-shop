@@ -1,7 +1,7 @@
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, 
             Modal, ModalBody, ModalHeader, Button, Label, FormGroup, Input, Form } from "reactstrap";
 import React, {useState} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHouse, faCircleInfo, faBars, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/logo.png'
@@ -15,7 +15,8 @@ function Header(){
                 password: '',
                 remember: false
             }
-
+    const location = useLocation();
+    console.log(location);
     const handleToggleModal = () => {
         setIsModalOpened(!isModalOpened);
     }   
@@ -29,15 +30,15 @@ function Header(){
 
     return (
         <React.Fragment>
-            <Navbar dark expand='md'>
+            <Navbar light expand='md' >
                 <div className="container justify-content-start">
-                    <NavbarToggler onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
+                    <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
                     <NavbarBrand className="ml-auto mr-auto navbar-brand" href="/">
-                        <h2 style={{
-                            'fontFamily': 'Lucida Handwriting',
-                            'transform' : 'translateY(10%)'
+                        <h2 className="logo-font" style={{
+                            'transform' : 'translateY(10%)',
+                            color: '#636363'
                      }}>REGEN</h2>
-                     {/* <img src={logo} width='80px'/> */}
+                     {/* <img src={logo} className='ml-md-5 mr-10' width='80px'/> */}
 
                     </NavbarBrand>
                     <Collapse className='ml-3 flex-row-reverse' isOpen={isNavOpened} navbar>

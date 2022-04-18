@@ -2,9 +2,14 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   /* font-family: 'Noto Sans JP', sans-serif; */
   /* background-color: ; */
+  font-family: 'Poppins', sans-serif!important;
 }
 
 .App-header {
@@ -23,9 +28,24 @@ body {
 }
 
 h1{
-  font-size: 120px!important;
+  font-size: 100px!important;
 }
-
+h2{
+  font-size: 50px!important;
+}
+h3{
+  font-size: 34px!important ;
+}
+.form-floating > label{
+  color: #868686;
+}
+a.nostyle{
+  text-decoration: none;
+  color: inherit;
+}
+.logo-font{
+  font-family: 'Roboto', serif;
+}
 .row-header{
   margin:0px auto;
   padding:0px auto;
@@ -39,41 +59,47 @@ h1{
 }
 
 .footer{
-  background-color: #D1C4E9;
+  background-color: #dde6f3;
   margin:0px auto;
   padding: 20px 0px 20px 0px;
 }
 
 .breadcrumb{
-  margin-top: 1rem;
+  margin-top: 10px;
+}
+.btn{
+  border-radius: 0!important;
 }
 
-.navbar-brand{
-  position: relative;
+.btn-light:hover{
+  background: rgb(27, 27, 27)!important;
+  color: white!important;
 }
-/* .navbar-brand img{
-  position: absolute;
-  top: -15px;
-  z-index: 10;
-} */
-
 .jumbotron {
-  padding:70px 30px 70px 30px;
+  padding: 70px 30px 70px 30px;
   margin:0px auto;
   background: #9575CD;
   color:floralwhite;
   margin-bottom: 2rem;
-  height: 500px;
+  min-height: 500px;
 }
 
-.address{
-  font-size:80%;
-  margin:0px;
-  color:#0f0f0f;
-}
+/* .navbar-dark {
+  position: absolute!important;
+  background-color: cornflowerblue;
+  z-index: 10;
+  width: 100%;
+  top: 0;
+  left: 0;
+} */
 
-.navbar-dark {
-  background-color: #8db4d5;
+.nav-link{
+  padding-left: 0!important;
+  padding-right: 0!important;
+  margin-right: 15px;
+}
+.navbar .nav-link.active{
+  border-bottom: solid 2px;
 }
 
 .page-enter {
@@ -100,6 +126,40 @@ h1{
   transform: translateX(100%);
   transition: all 300ms ease-out;
 }
+a.btn-social-icon{
+  border-radius: 40%!important;
+  border: none!important;
+}
+a.btn-social-icon.size-2x{
+  width: 45px;
+  height: 45px;
+}
+a.btn-social-icon.size-2x>:first-child{
+  font-size: 2em;
+}
+a.btn-social-icon.size-3x{
+  width: 64px;
+  height: 64px;
+}
+a.btn-social-icon.size-3x>:first-child{
+  font-size: 3em;
+}
+a.btn-social-icon>:first-child{
+
+  top: 50%!important;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+a.btn-plain{
+  background-color: transparent!important;
+}
+a.btn-plain-dark{
+  background-color: #83766d
+}
+
 .cmt-page-numbers li{
   display: inline;
 }

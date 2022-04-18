@@ -1,0 +1,74 @@
+:root{
+    --color-brown: #a9855b;
+    --color-dark: #6c757d;
+}
+.feedback-btn::before{
+    content: " ";
+    right: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    transition: transform .4s cubic-bezier(.77,0,.175,1);
+    z-index: -1;
+    
+}
+.feedback-btn::before{
+    position: absolute;
+    transform-origin: bottom left;
+    transform: scaleY(0);
+}
+a:hover>.feedback-btn::before,
+button.feedback-btn:hover:before{
+    transform: scaleY(1);
+}
+.feedback-support{
+    padding: 29px 43px 38px 41px;
+    background-color: rgb(248, 247, 245);
+    height: 348.6px;
+}
+.feedback-support > h3{
+    font-family: Roboto, 'serif';
+    color: var(--color-brown);
+}
+.feedback-support >p.call{
+    color: var(--color-brown);
+}
+.feedback-support > a{
+    text-decoration: none;
+}
+.feedback-support > a:hover >.feedback-btn{
+    text-decoration: none;
+    color: white;
+    z-index: 2;
+}
+.feedback-support > a > .feedback-btn{
+    margin-top: 40px;
+    position: relative;
+    display: inline-block;
+    border: 2px solid var(--color-brown);
+    padding: 20px 23px;
+    color: var(--color-brown);
+}
+.feedback-support > a > .feedback-btn::before{
+    background-color: var(--color-brown)    ;
+}
+button.feedback-btn{
+    position: relative;
+    display: inline-block;
+    border: 2px solid var(--color-dark);
+    padding: 20px 23px;
+    color: white;
+}
+button.feedback-btn:hover{
+    color: var(--color-dark);
+    z-index: 2;
+}
+button.feedback-btn::before{
+    background-color: white;
+}
+
+i.feedback-error-msg{
+    font-size: small;
+    color: #dc3545;
+    
+}

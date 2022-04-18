@@ -5,7 +5,7 @@ import Contact from "./ContactComponent/";
 import Home from "./HomeComponent/";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import { Route,  useParams, useLocation} from 'react-router-dom'
+import { Route, Routes, useParams, useLocation} from 'react-router-dom'
 import {  useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { fetchDishes, fetchPromos, fetchComments, fetchLeaders } from "../redux/actions";
@@ -57,16 +57,16 @@ function Main(){
                 {/* {location.pathname!=='/'?<BreadcrumbComponent></BreadcrumbComponent>:null} */}
             {/* <TransitionGroup > */}
                 {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
-
-                    <SlideRoutes animation='slide' duration={500} location={location}>
+                <Routes>
+                    {/* <SlideRoutes animation='' duration={500} location={location}> */}
                         <Route path='/' element={<Home/>} />
                         <Route exact path='/menu' element={<Menu/>} />
                         <Route path='/menu/:dishId' element={<DishWithId />} />
                         <Route path='/contactus' element={<Contact/>} />
                         <Route path='/aboutus' element={<About />} />
                         <Route path="*" element={<Home/>}/>
-                    </SlideRoutes>
-
+                    {/* </SlideRoutes> */}
+                    </Routes>
                 {/* </CSSTransition> */}
             {/* </TransitionGroup> */}
             <Footer/>

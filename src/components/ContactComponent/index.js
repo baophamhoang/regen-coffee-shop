@@ -1,19 +1,19 @@
-import React from 'react';
-import { Breadcrumb, BreadcrumbItem,
-            Button, Label, Col, Row} from 'reactstrap';
-import { Control, LocalForm, Errors} from 'react-redux-form'
+import React, { useEffect } from 'react';
+import { Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSkype } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { 
     faPhone,
-    faFax,
     faEnvelope,
-    faEnvelopeOpen
  } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux';
 import {  postFeedbacks } from '../../redux/actions';
 import { v4 as uuidv4} from 'uuid';
+import FeedBackForm from './FeedbackForm';
+import AddressMap from './MapComponent';
+import './index.css'
+import SocialIcon from '../SocialIconComponent';
 
 //  Validations
 const required = (val) => val && val.length;
@@ -24,58 +24,82 @@ const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val
 
 
 function Contact() {
+    useEffect(() => {
+        window.scrollTo({
+            // top:0,
+            // behavior: 'auto'
+        })
+    },[]);
     const dispatch = useDispatch();
-    const handleSubmit = (e, id) => {
+    const handleSubmit = (e) => {
         const payload = {...e};
         payload.id = uuidv4();
         payload.date = new Date().toISOString();
+        console.log(payload);
         dispatch(postFeedbacks(payload));
     }
 
     return(
         <div className="container">
-            <div className="row">
+            {/* <div className="row">
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Contact Us</BreadcrumbItem>
-                </Breadcrumb>
-                <div className="col-12">
-                    <h3>Contact Us</h3>
-                    <hr />
+                </Breadcrumb>           
+            </div> */}
+            <div className="row row-content ">
+                <div className="col-12 text-center">
+                    <h1>Contact us</h1>
+                    <span>Want to know more about what we offer? Need to check that we can meet your dietary needs? Got an unusual request you want us to fulfill? Or just want to tell us about your day?</span>
+                    <br/>
+                    <br/>
+                    <span>Get in touch via the contact details below and we’ll get back to you ASAP. </span>
                 </div>                
             </div>
             <div className="row row-content">
-                <div className="col-12">
-                <h3>Location Information</h3>
+                {/* <div className="col-12">
+                    <h2>Where to find us</h2>
+                </div> */}
+                <div className="col-12 col-sm-6  align-self-center">
+                        <h2 className='logo-font'>Regen - Drinks and Coffee</h2>
+                        <p style={{
+                            fontSize: '20px',
+                            background: 'rgb(248, 247, 245)',
+                            textAlign: 'center'
+                        }}>17 Nguyen Thiep, Son Tra, Da Nang</p>
+                        <p>
+                            <div className='row'>
+                                <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> 090 5113 444 &nbsp; &nbsp;</div>
+                                <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon><a className='nostyle' href="mailto:confusion@food.net"> regen@gmail.com</a></div>
+                                <div className='col-12 col-lg'><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon><a className='nostyle' href="https://www.facebook.com/regen.coffee.shop"> regen.coffee.shop</a></div>
+                            </div>
+                        </p>
+                        {/* <SocialIcon facebook call mail dark size='2x' style={{
+                            'marginRight': '5px'
+                        }} />
+                         */}
                 </div>
-                <div className="col-12 col-sm-4 offset-sm-1">
-                        <h5>Our Address</h5>
-                        <address>
-                        121, Clear Water Bay Road<br />
-                        Clear Water Bay, Kowloon<br />
-                        HONG KONG<br />
-                        <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>: +852 1234 5678<br />
-                        <FontAwesomeIcon icon={faFax}></FontAwesomeIcon>: +852 8765 4321<br />
-                        <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>: <a href="mailto:confusion@food.net">confusion@food.net</a>
-                        </address>
-                </div>
-                <div className="col-12 col-sm-6 offset-sm-1">
-                    <h5>Map of our Location</h5>
-                </div>
-                <div className="col-12 col-sm-11 offset-sm-1">
-                    <div className="btn-group" role="group">
-                        <a role="button" className="btn btn-primary" href="tel:+85212345678"><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> Call</a>
+                
+                {/* <div className="col-12 col-sm-10 offset-sm-2 mb-5 mt-1">
+                    <div className="btn-group" role="group"> */}
+                        {/* <a role="button" className="btn btn-primary" href="tel:+85212345678"><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> Call</a>
                         <a role="button" className="btn btn-info"><FontAwesomeIcon icon={faSkype}></FontAwesomeIcon> Skype</a>
-                        <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><FontAwesomeIcon icon={faEnvelopeOpen}></FontAwesomeIcon> Email</a>
-                    </div>
+                        <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><FontAwesomeIcon icon={faEnvelopeOpen}></FontAwesomeIcon> Email</a> */}
+                    {/* </div>
+                </div> */}
+                <div className="col-12  col-sm-6">
+                    {/* <h5>Map of our Location</h5> */}
+                        <AddressMap/>
                 </div>
             </div>
-            <div className="row row-content">
+            <div className="row row-content text-center">
                    <div className="col-12">
-                      <h3>Send us your Feedback</h3>
+                      <h3  style={{
+                        fontFamily: '"Playfair Display", arial, serif'
+                    }} >Send us your Feedback</h3>
                    </div>
                     <div className="col-12 col-md-9">
-                    <LocalForm model='.feedback' onSubmit={(e, id) => handleSubmit(e)}>
+                    {/* <LocalForm model='.feedback' onSubmit={(e) => handleSubmit(e)}>
                             <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
@@ -131,7 +155,7 @@ function Contact() {
                                         placeholder="Tel. Number"
                                         className="form-control"
                                         validators={{
-                                            required,
+                                            
                                             minLength: minLength(6),
                                             maxLength: maxLength(15),
                                             isNumber
@@ -205,7 +229,24 @@ function Contact() {
                                     </Button>
                                 </Col>
                             </Row>
-                        </LocalForm>
+                        </LocalForm> */}
+                        
+                    </div>
+                    <div className="col-12 col-md-7">
+                        <FeedBackForm></FeedBackForm>
+                    </div>
+                    <div className="col-12 col-md-5">
+                        <div className='feedback-support'>
+                            <h3>Customer Support</h3>
+                            <p>How can we help you? Give us a call</p>  
+                            <p className='call'>Call: 090 5113 444 </p>
+                            <p>Or just send us an e-mail below:</p>
+                                <a href='mailto:'>
+                                    <div className='feedback-btn'>
+                                        Send an e-mail
+                                    </div>
+                                </a>
+                        </div>
                     </div>
                </div>
 
