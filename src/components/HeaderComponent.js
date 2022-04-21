@@ -33,7 +33,7 @@ function Header(){
             <Navbar light expand='md' >
                 <div className="container justify-content-start">
                     <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
-                    <NavbarBrand className="ml-auto mr-auto navbar-brand" href="/">
+                    <NavbarBrand className=" mr-auto navbar-brand" href="/">
                         <h2 className="logo-font" style={{
                             'transform' : 'translateY(10%)',
                             color: '#636363'
