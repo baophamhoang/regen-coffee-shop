@@ -1,0 +1,108 @@
+:root{
+    --color-active: #6654d4;
+    --color-unactive: white;
+    --color-dark: #565e64;
+}
+
+.modal-body .form-group.row{
+    margin-bottom: 10px;
+}
+
+.dish-details-box{
+    /* border-radius: 15px; */
+    /* background-color: antiquewhite; */
+}
+.dish-details-btn-group{
+    border-radius: 15px;
+    height: 40px;
+    /* max-width: 500px; */
+   
+   
+}
+.dish-details-btn-group >div{
+    position: relative;
+    /* max-width: 250px; */
+    line-height: 40px;
+    cursor: pointer;
+    background-color: var(--color-unactive);
+    border: 2px solid var(--color-active);
+    transition: ease-in 0.2s;
+}
+.dish-details-btn-group > .dish-details-description{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-right: none;
+}
+.dish-details-btn-group > .dish-details-comments{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-left: none
+}
+.dish-details-btn-group >div.active{
+    background-color: var(--color-active);
+    color: white;
+}
+.dish-details-btn-group >div.active::before{
+    color: var(--color-active);
+}
+.dish-details-btn-group >.dish-details-description.active+ div::after{
+    color: var(--color-active);   
+}
+.dish-details-btn-group >.dish-details-description::before,
+.dish-details-btn-group >.dish-details-comments::before{
+    content: "";
+    position: absolute;
+    color: var(--color-unactive);
+    transition: ease-in 0.2s;
+}
+.dish-details-btn-group >.dish-details-description::before{
+    top: 0;
+    right: -10px;
+    border-top: 40px solid;
+    border-right : 20px solid transparent;
+    /* color: red; */
+}
+.dish-details-btn-group >.dish-details-comments::before{
+    border-bottom: 40px solid;
+    border-left : 20px solid transparent;
+    top: 0;
+    left: -10px;
+    /* color: aqua; */
+}
+.dish-details-btn-group >.dish-details-comments::after{
+    content: '';
+    position: absolute;
+    border-bottom: 20px solid transparent;
+    border-left : 10px solid ;
+    top: 0;
+    left: 0;
+    color: var(--color-unactive);
+    transition: ease-in 0.2s;
+}
+.tab-detail-section{
+    min-height: 600px;
+}
+.tab-detail{
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+.tab-detail.hide{
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+}
+.tab-detail.show{
+    opacity: 1;
+    visibility:visible;
+    display:block;
+}
+a#back-to-menu{
+    padding: 10px 5px;
+    text-decoration: none;
+    border: 2px solid;
+    border-radius: 15px;
+    color: var(--color-dark);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+}
+a#back-to-menu:hover{
+    transform: translateY(-10px);
+}

@@ -1,15 +1,12 @@
 import React from 'react';
-import { useSelector} from 'react-redux';
-import { commentsSelector } from '../../redux/selectors'
 import CommentPages from './CommentPages';
 import CommentSection from './CommentSection';
 import { useState } from 'react';
 
-function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=4}){
-    const allCmts = useSelector(commentsSelector);
-    const cmts = allCmts.comments.filter(cmt=> cmt.dishId === parseInt(dishId));
-    console.log(cmts);
+function Comments({cmts, CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=4}){
+    
     const [cmtPageNum, setCmtPageNum] = useState(0);
+    
     const getCmtPageNumbers = (len, maxCmtsPerPage) => {
         const numberOfPages = Math.ceil(len/maxCmtsPerPage);
         return Array.from({length:numberOfPages}, (_,index) => index+1);
@@ -34,7 +31,7 @@ function Comments({ CommentForm, handleCommentBtnClick, dishId, maxCmtsPerPage=4
     else{
         cmtToShow = [...cmts].splice(maxCmtsPerPage*(cmtPageNum-1),maxCmtsPerPage);
     }
-    console.log(cmtToShow);
+
 
 
     return (

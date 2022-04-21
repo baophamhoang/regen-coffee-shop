@@ -15,8 +15,9 @@ import { postComment } from "../../redux/actions";
 import Loading from "../WaitingPages/LoadingComponent";
 import { baseUrl } from '../../shared/baseUrl'
 import { FadeTransform } from 'react-animation-components';
-import Comments from "./CommentComponent";
-
+import DishDetailSection from "./DishDetailSection";
+// import css
+import './index.css'
 const validations = {
     minAuthorLength: len => val => val && val.length >= len,
     maxAuthorLength: len => val => !(val) || (val.length <= len)
@@ -46,7 +47,6 @@ function DishDetail({selectedDishId}){
         // payload.id = uuidv4();
         payload.date = new Date().toISOString();
         payload.dishId = selectedDish.id;
-        // dispatch(addComment(payload))
         dispatch(postComment(payload));
         setIsModalOpened(!isModalOpened);
     }
@@ -135,38 +135,37 @@ function DishDetail({selectedDishId}){
                         </ModalBody>
                     </Modal>
                     <div className="row">
-                        {/* <Breadcrumb>
-                            <BreadcrumbItem><Link to={'/'}>Home</Link></BreadcrumbItem>
-                            <BreadcrumbItem><Link to={'/menu'}>Menu</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
-                        </Breadcrumb> */}
-                        <div className="col-12">
-                            <h3>{selectedDish.name}</h3>
-                            <hr />
-                        </div>      
+                        <Breadcrumb>
+                            {/* <BreadcrumbItem><Link to={'/'}>Home</Link></BreadcrumbItem> */}
+                            <BreadcrumbItem><Link id="back-to-menu" to={'/menu'}>&larr; Back to Menu</Link></BreadcrumbItem>
+                            {/* <BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem> */}
+                        </Breadcrumb>
+                        <div style={{borderBottom: '1px ridge'}}></div>
                     </div>
                     <div className="fading">
-                        <div className="row mt-5 " >
-                            <div className="col-md-5 col-12 m-1">
-                                <FadeTransform in transformProps={{
-                                        exitTransform: 'scale(0.5) translateY(-50%)'
-                                    }}>
-                                    <Card>
+                        <FadeTransform in transformProps={{
+                                            exitTransform: 'scale(0.5) translateY(-50%)'
+                                        }}>
+                        <div className="dish-details-box">
+                            <div className="row mt-md-3 " >
+                                <div className="col-md-5 col-12 m-1">
+                                    <Card className='mt-md-5'>
                                         <CardImg top src={baseUrl + selectedDish.image} alt={selectedDish.name} />
-                                        <CardBody>
+                                        {/* <CardBody>
                                             <CardTitle>{selectedDish.name}</CardTitle>
                                             <CardText>{selectedDish.description}</CardText>
-                                        </CardBody>
+                                        </CardBody> */}
                                     </Card>
-                                    </FadeTransform>
+                                        
+                                </div>
+                                <DishDetailSection selectedDish={selectedDish} selectedDishId={selectedDishId}  
+                                    CommentForm={CommentForm} handleCommentBtnClick={handleCommentBtnClick}/>
                             </div>
-                            <div className="col-md-5 col-12 m-1">
-                                <h4>Comments</h4>
-                                
-                                <Comments handleCommentBtnClick={handleCommentBtnClick} CommentForm={CommentForm} dishId={selectedDishId} />
-                                
+                                <div className="col-md-5 col-12 m-1">
+                                    
                             </div>
                         </div>
+                        </FadeTransform>
                     </div>
             </Container>
             )}
