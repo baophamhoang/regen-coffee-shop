@@ -1,0 +1,92 @@
+:root{
+  --color-black: rgb(27,27,27);
+}
+.subscribe-banner{
+  position: relative;
+}
+.subscribe-banner>img.subscribe-bg{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+.subscribe-banner>button{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  /* right: 0;
+  bottom: 0; */
+  /* transform: translate(50%,-50%) */
+}
+
+button.btn-main{
+  border: 2px solid var(--color-black);
+  color: var(--color-black);
+  font-size: 20px;
+  padding: 20px 40px;
+  background: transparent;
+}
+button.btn-main:hover{
+  color: white;
+}
+button.btn-main:before{
+  position: absolute;
+  transform-origin: bottom left;
+  transform: scaleY(0);
+  content: " ";
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  transition: transform .4s cubic-bezier(.77,0,.175,1);
+  background:  var(--color-black); 
+  z-index: -1;
+}
+button.btn-main:hover::before{
+  transform: scaleY(1);
+} 
+
+/* Slider */
+.slick-slide{
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+}
+.slick-slide .card.menu-card{
+  border: none;
+  padding: 10px;
+  background-color: transparent;
+  
+}
+/* .slick-slide .card.menu-card>a{
+  position: relative;
+} */
+
+.slick-slide .card.menu-card a>.menu-card-overlay{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(96,96,96,.8);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease-out;
+}
+.slick-slide .card.menu-card a>img{
+  width: 100%;
+  transform-origin: bottom;
+  transition: 0.3s all ease-in-out;
+}
+.slick-slide .card.menu-card a:hover>img{
+  transform: scale(1.1);  
+}
+.slick-slide .card.menu-card a:hover>.menu-card-overlay{
+  opacity: 1;
+  visibility: visible;
+  /* transition: all .3s ease-out; */
+}
+.menu-bg{
+  background-color: #d3eaf6;
+  border-radius: 15px;
+}
+

@@ -1,12 +1,9 @@
 import Loading from "../WaitingPages/LoadingComponent";
 import ErrorMsg from "../WaitingPages/ErrorComponent";
 import RenderMenuItem from "./RenderMenuItem";
-import { useSelector } from 'react-redux'
-import { dishesSelector } from '../../redux/selectors'
-import MenuCard from "./MenuCard";
+// import MenuCard from "./MenuCard";
 
-function MenuItems(){
-    const dishesData = useSelector(dishesSelector);
+function MenuItems({dishesData}){
     if (dishesData.isLoading){
       return (
         <div className="col-12">
@@ -23,11 +20,9 @@ function MenuItems(){
     else { 
     const menu = dishesData.dishes.map((dish)=>{
       return (
-          // <div key={dish.id} className="col-12 col-md-5 m-1">
-          //   <RenderMenuItem dish={dish}/>
-
-          // </div>
-          <MenuCard dish={dish}/>
+          <div key={dish.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 text-center ">
+            <RenderMenuItem dish={dish}/>
+          </div>
         )
     });
     return menu;

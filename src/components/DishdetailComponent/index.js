@@ -135,11 +135,11 @@ function DishDetail({selectedDishId}){
                         </ModalBody>
                     </Modal>
                     <div className="row">
-                        <Breadcrumb>
+                        {/* <Breadcrumb>
                             <BreadcrumbItem><Link to={'/'}>Home</Link></BreadcrumbItem>
                             <BreadcrumbItem><Link to={'/menu'}>Menu</Link></BreadcrumbItem>
                             <BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
-                        </Breadcrumb>
+                        </Breadcrumb> */}
                         <div className="col-12">
                             <h3>{selectedDish.name}</h3>
                             <hr />

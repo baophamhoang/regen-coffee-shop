@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { 
@@ -15,19 +13,12 @@ import AddressMap from './MapComponent';
 import './index.css'
 import SocialIcon from '../SocialIconComponent';
 
-//  Validations
-const required = (val) => val && val.length;
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
-const minLength = (len) => (val) => val && (val.length >= len);
-const isNumber = (val) => !isNaN(Number(val));
-const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-
 
 function Contact() {
     useEffect(() => {
         window.scrollTo({
-            // top:0,
-            // behavior: 'auto'
+            top:0,
+            behavior: 'auto'
         })
     },[]);
     const dispatch = useDispatch();
@@ -70,23 +61,16 @@ function Contact() {
                         <p>
                             <div className='row'>
                                 <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> 090 5113 444 &nbsp; &nbsp;</div>
-                                <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon><a className='nostyle' href="mailto:confusion@food.net"> regen@gmail.com</a></div>
-                                <div className='col-12 col-lg'><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon><a className='nostyle' href="https://www.facebook.com/regen.coffee.shop"> regen.coffee.shop</a></div>
+                                <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon><a className='nostyle' style={{color:'inherit'}} href="mailto:confusion@food.net"> regen@gmail.com</a></div>
+                                <div className='col-12 col-lg'><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon><a className='nostyle' style={{color:'inherit'}} href="https://www.facebook.com/regen.coffee.shop"> regen.coffee.shop</a></div>
                             </div>
                         </p>
-                        {/* <SocialIcon facebook call mail dark size='2x' style={{
+                        <SocialIcon facebook call mail dark size='2x' style={{
                             'marginRight': '5px'
                         }} />
-                         */}
+                        
                 </div>
-                
-                {/* <div className="col-12 col-sm-10 offset-sm-2 mb-5 mt-1">
-                    <div className="btn-group" role="group"> */}
-                        {/* <a role="button" className="btn btn-primary" href="tel:+85212345678"><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> Call</a>
-                        <a role="button" className="btn btn-info"><FontAwesomeIcon icon={faSkype}></FontAwesomeIcon> Skype</a>
-                        <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><FontAwesomeIcon icon={faEnvelopeOpen}></FontAwesomeIcon> Email</a> */}
-                    {/* </div>
-                </div> */}
+
                 <div className="col-12  col-sm-6">
                     {/* <h5>Map of our Location</h5> */}
                         <AddressMap/>

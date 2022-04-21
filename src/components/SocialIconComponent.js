@@ -55,7 +55,6 @@ function SocialIcon(props){
     }
     const socialBrands = (Object.keys(props));
     const classes = `${props.plain?`btn-plain `:``}${props.dark?`btn-plain-dark `:``}${props.size?'size-'+props.size:``}`
-    console.log(classes);
     return (socialBrands.map((x,id)=> <BrandComponent brand={x} keyId={id} style={props.style} classes={classes} />)|| '');
 }
 

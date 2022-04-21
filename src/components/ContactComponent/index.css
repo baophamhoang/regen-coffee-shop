@@ -35,6 +35,7 @@ button.feedback-btn:hover:before{
 }
 .feedback-support > a{
     text-decoration: none;
+    bottom: 0;
 }
 .feedback-support > a:hover >.feedback-btn{
     text-decoration: none;
@@ -70,5 +71,4 @@ button.feedback-btn::before{
 i.feedback-error-msg{
     font-size: small;
     color: #dc3545;
-    
 }

@@ -46,6 +46,11 @@ a.nostyle{
 .logo-font{
   font-family: 'Roboto', serif;
 }
+img.logo{
+  /* width: 100%; */
+  max-width: 150px;
+  width: 100%;
+}
 .row-header{
   margin:0px auto;
   padding:0px auto;
@@ -83,16 +88,6 @@ a.nostyle{
   margin-bottom: 2rem;
   min-height: 500px;
 }
-
-/* .navbar-dark {
-  position: absolute!important;
-  background-color: cornflowerblue;
-  z-index: 10;
-  width: 100%;
-  top: 0;
-  left: 0;
-} */
-
 .nav-link{
   padding-left: 0!important;
   padding-right: 0!important;
@@ -154,7 +149,7 @@ a.btn-social-icon>:first-child{
   -o-transform: translateY(-50%);
 }
 a.btn-plain{
-  background-color: transparent!important;
+  background-color: transparent;
 }
 a.btn-plain-dark{
   background-color: #83766d
@@ -183,6 +178,13 @@ li.page-btn:hover{
 #submit-btn{
   /* width: 80%; */
 }
+.btn-subcribe-us{
+  margin-top: 5px;
+  width: 100%;
+  padding: 10px 0!important;
+
+}
+
 
 @keyframes example {
   from {

@@ -1,10 +1,11 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux'
 import { allSelector } from '../../redux/selectors'
-import RenderCard from './RenderCard';
+import DishesSlider from './DishesSlider';
 import SocialIcon from '../SocialIconComponent'
 import { Container, UncontrolledCarousel } from 'reactstrap';
+import { baseUrl } from '../../shared/baseUrl';
+import './index.css'
 const jumbotronBg = {
   backgroundImage: `url(http://localhost:3001/images/bg.jpg)`,
   opacity: `0.9`,
@@ -18,6 +19,12 @@ const jumbotronBg = {
 function Home() {
   const data = useSelector(allSelector);
   console.log(data.dishes);
+
+  const handleSubcribeBtn = () => {
+    const subInput = document.querySelector('.footer input');
+    subInput.scrollIntoView();
+    subInput.focus();
+  }
   
   return(
     <React.Fragment>
@@ -43,33 +50,25 @@ function Home() {
           <h2 className='col-12'>Come and enjoy </h2>
           <p className='col-12'>You deserve a great cup of tea wherever you are. Your office tea should be nothing less</p>
         </div>
-      </Container>
-        {/* <div className="row row-content align-items-start"> */}
-          {/* <div className="col-12 col-md m-1">
-              <RenderCard 
-                item={data.dishes.dishes.filter(dish => dish.featured)[0]} 
-                isLoading={data.dishes.isLoading} 
-                errorMsg={data.dishes.errorMsg}
-                />
-          </div>
-          <div className="col-12 col-md m-1">
-              <RenderCard 
-                item={data.promotions.promotions.filter( pro => pro.featured)[0]} 
-                isLoading={data.promotions.isLoading} 
-                errorMsg={data.promotions.errorMsg}/>
-          </div>
-          <div className="col-12 col-md m-1">
-              <RenderCard 
-                item={data.leaders.leaders.filter( leader => leader.featured)[0]} 
-                isLoading={data.leaders.isLoading} 
-                errorMsg={data.leaders.errorMsg}/>
-          </div> */}
-        {/* </div> */} 
+
         
-      <Container>
-        <div className="row row-content align-content-center text-center">
-            <h3 className='col-12'>Meet us at 17 Nguyen Thiep, Son Tra, Da Nang</h3>
+        </Container>
+          <div className='subscribe-banner'>
+            <img className='subscribe-bg' src={baseUrl+'images/home.jpg'}></img>
+            <button className='btn-main' onClick={handleSubcribeBtn}>Subscribe us</button>
+          </div>
+        <Container>
+        <div className='row row-content text-center '>
+          <h3>What to try</h3>
+          <DishesSlider/>
         </div>
+        <div className='row row-content text-center'>
+          <h3><SocialIcon facebook size='2x'/>/regen.coffee.shop</h3>
+          <DishesSlider/>
+        </div>
+        {/* <div className="row row-content align-content-center text-center">
+            <h3 className='col-12'>Meet us at 17 Nguyen Thiep, Son Tra, Da Nang</h3>
+        </div> */}
       </Container>
     </React.Fragment>
   );
