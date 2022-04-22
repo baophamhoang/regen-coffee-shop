@@ -59,11 +59,11 @@ function Main(){
                 {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
                 <Routes>
                     {/* <SlideRoutes animation='' duration={500} location={location}> */}
-                        <Route path='/regen-coffee-shop/' element={<Home/>} />
-                        <Route exact path='/regen-coffee-shop/menu' element={<Menu/>} />
-                        <Route path='/regen-coffee-shop/menu/:dishId' element={<DishWithId />} />
-                        <Route path='/regen-coffee-shop/contactus' element={<Contact/>} />
-                        <Route path='/regen-coffee-shop/aboutus' element={<About />} />
+                        <Route path='/' element={<Home/>} />
+                        <Route exact path='/menu' element={<Menu/>} />
+                        <Route path='/menu/:dishId' element={<DishWithId />} />
+                        <Route path='/contactus' element={<Contact/>} />
+                        <Route path='/aboutus' element={<About />} />
                         <Route path="*" element={<Home/>}/>
                     {/* </SlideRoutes> */}
                     </Routes>
