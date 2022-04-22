@@ -1,5 +1,4 @@
 import React from "react";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import MenuSection from "./MenuSection";
 import "./index.css"
 import { useSelector } from 'react-redux'
@@ -9,8 +8,6 @@ function Menu(){
   const dishesData = useSelector(dishesSelector);
   return (
     <React.Fragment>
-      {/* <div className="header-space">
-      </div> */}
       <div className="container">
         <div className="row">
           {/* <Breadcrumb>

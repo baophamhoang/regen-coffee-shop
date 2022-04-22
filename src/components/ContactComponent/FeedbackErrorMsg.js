@@ -1,6 +1,5 @@
 import React from "react";
 function ErrorMsg({validations}){
-    console.log(validations);
     if (validations && validations.length>0){
         for (const validation of validations){
                 switch(validation){

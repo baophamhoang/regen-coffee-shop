@@ -1,10 +1,27 @@
-import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader } from 'reactstrap';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import AddressMap from './MapComponent'
-import RenderLeaders from './RenderLeaders';
+import { imgBaseUrl } from '../../shared/imgBaseUrl';
+import { aboutus_2, aboutus_1, coffee } from '../../shared/imgResources';
+import {  child, get } from "firebase/database";
+import getDb from '../../firebase/getDb'
 
 function About() {
+
+    // useEffect(()=>{
+    //     get(child(getDb(), 'comments'))
+    //     .then((s)=>{
+    //         if (s.exists()){
+    //             console.log(s.val());
+    //         } else {
+    //             console.log('error');
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.error(error);
+    //       });
+    // }, [])
+
+
     return(
         <div className="container">
             <div className="row ">
@@ -22,7 +39,7 @@ function About() {
             </div>
             <div className="row row-content align-items-center">
                 <div className="col-12 col-md-8">
-                    <img src='http://localhost:3001/images/aboutus_2.jpg' width='100%' style={{}}/>
+                    <img src={imgBaseUrl+ aboutus_2} width='100%' style={{}}/>
                 </div>
                 <div className="col-12 col-md-4 ">
                     <h2>Our History</h2>
@@ -37,12 +54,12 @@ function About() {
                     <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
                 </div>
                 <div className="col-12 offset-md-1 col-md-7 order-1 order-md-2">
-                    <img src='http://localhost:3001/images/coffee.jpg' width='100%'/>
+                    <img src={imgBaseUrl+coffee} width='100%'/>
                 </div>
             </div>
             <div className="row row-content align-items-center">
                 <div className="col-12 col-md-7">
-                    <img src='http://localhost:3001/images/aboutus_1.jpg' width='100%' style={{}}/>
+                    <img src={imgBaseUrl+aboutus_1} width='100%' style={{}}/>
                 </div>
                 <div className="col-12 col-md-5">
                     <h2>Our History</h2>
@@ -77,35 +94,7 @@ function About() {
                     {/* </div> */}
                     
                 </div>
-                {/* <div className="col-12 offset-md-2 col-md-8 text-center">
-                    <AddressMap/>
-                </div>
-                 */}
             </div>
-                
-                {/* <div className="col-12">
-                    <Card>
-                        <CardBody className="bg-faded">
-                            <blockquote className="blockquote">
-                                <p className="mb-0">You better cut the pizza in four pieces because
-                                    I'm not hungry enough to eat six.</p>
-                                <footer className="blockquote-footer">Yogi Berra,
-                                <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
-                                    P. Pepe, Diversion Books, 2014</cite>
-                                </footer>
-                            </blockquote>
-                        </CardBody>
-                    </Card>
-                </div> */}
-            {/* <div className="row row-content">
-                <div className="col-12">
-                    <h2>Corporate Leadership</h2>
-                </div>
-                <div className="col-12">
-                    <RenderLeaders/>
-                    
-                </div>
-            </div> */}
         </div>
     );
 }

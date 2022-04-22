@@ -1,14 +1,14 @@
 import {initializeApp} from 'firebase/app'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDV2teOWZzwG5uovN8CPJtZbN7KFssHYYE",
-    authDomain: "bao-restaurant.firebaseapp.com",
-    databaseURL: "https://bao-restaurant-default-rtdb.firebaseio.com",
-    projectId: "bao-restaurant",
-    storageBucket: "bao-restaurant.appspot.com",
-    messagingSenderId: "963691663434",
-    appId: "1:963691663434:web:3ee769eeaaeb105b9696b3",
-    measurementId: "G-WT00MT3905"
-};
+    apiKey: "AIzaSyAT_zzo9Qx6cs-WmSqe-iwLaR1_V7Yn5gA",
+    authDomain: "the-restaurant-184d9.firebaseapp.com",
+    databaseURL: "https://the-restaurant-184d9-default-rtdb.firebaseio.com",
+    projectId: "the-restaurant-184d9",
+    storageBucket: "the-restaurant-184d9.appspot.com",
+    messagingSenderId: "171570155953",
+    appId: "1:171570155953:web:ae5a774e1e2c02243fed90",
+    measurementId: "G-KS4PJXS3ZP"
+  };
     
 export const app = initializeApp(firebaseConfig);

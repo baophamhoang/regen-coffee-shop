@@ -16,7 +16,6 @@ function Header(){
                 remember: false
             }
     const location = useLocation();
-    console.log(location);
     const handleToggleModal = () => {
         setIsModalOpened(!isModalOpened);
     }   

@@ -1,4 +1,7 @@
 import {useEffect, useState} from 'react'
+import { useDispatch } from 'react-redux';
+import {  postFeedbacksFB } from '../../redux/actions';
+import { v4 as uuidv4} from 'uuid';
 import ErrorMsg from './FeedbackErrorMsg';
 const initalForm = {
     firstname: '',
@@ -40,6 +43,7 @@ const validations = {
 }
 
 function FeedBackForm(){
+    const dispatch = useDispatch();
     const [formValue, setFormValue] = useState(initalForm);
     const [errors, setErrors] = useState({
     });
@@ -57,14 +61,18 @@ function FeedBackForm(){
             ...errors,
             [name]: valids
         })
-        console.log(errors);
     }
     const handleSubmit = (e) =>{
         e.preventDefault();
         if (Object.values(errors).some(v=>v.length>0)){
             alert('Please review your feedback')
         }
-        else alert(JSON.stringify(formValue))
+        else {
+            alert(JSON.stringify(formValue));
+            const payload = {...formValue};
+            payload.id = uuidv4();
+            payload.date = new Date().toISOString();
+            dispatch(postFeedbacksFB(payload));}
     }
     useEffect(()=>{
         const inputs = Object.keys(errors);
@@ -82,7 +90,7 @@ function FeedBackForm(){
 
    
     return (
-        <form onSubmit={handleSubmit} >
+        <form key='feedback-form' onSubmit={handleSubmit} >
             <div className="row">     
                 <div className="col-12 col-md">
                     <div class="form-floating mb-3">

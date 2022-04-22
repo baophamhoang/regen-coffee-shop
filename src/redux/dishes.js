@@ -25,7 +25,6 @@ const dishesReducer = (state = {
                 errorMsg: action.payload
             })
         case ADD_DISHES:
-            console.log(action.payload);
             return ({
                 ...state,
                 isLoading: false,

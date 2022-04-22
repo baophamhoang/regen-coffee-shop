@@ -8,7 +8,6 @@ function DishDetailSection({selectedDish, selectedDishId, CommentForm, handleCom
     const allCmts = useSelector(commentsSelector);
     const cmts = allCmts.comments.filter(cmt=> cmt.dishId === parseInt(selectedDishId));
     const ratings = (cmts.reduce( (total, cmt)=> total+cmt.rating, 0))/cmts.length
-    console.log(ratings);
     const handleDishDetailBtn = (e) => {
         if (!e.target.classList.contains('active')){
             document.querySelectorAll('.dish-details-btn-group div').forEach(m=>m.classList.remove('active'));

@@ -1,25 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
-import { allSelector } from '../../redux/selectors'
 import DishesSlider from './DishesSlider';
 import SocialIcon from '../SocialIconComponent'
-import { Container, UncontrolledCarousel } from 'reactstrap';
-import { baseUrl } from '../../shared/baseUrl';
+import { Container } from 'reactstrap';
+import { imgBaseUrl } from '../../shared/imgBaseUrl';
+import { bg } from '../../shared/imgResources';
 import './index.css'
 const jumbotronBg = {
-  backgroundImage: `url(http://localhost:3001/images/bg.jpg)`,
+  backgroundImage: `url(${imgBaseUrl+bg})`,
   opacity: `0.9`,
   backgroundRepeat: `no-repeat`,
   backgroundSize: `cover`,
-  // backgroundPositionY: `+25%`,
-  // backgroundAttachment: 'fixed',
   backgroundPosition: 'center center'
   }
 
 function Home() {
-  const data = useSelector(allSelector);
-  console.log(data.dishes);
-
   const handleSubcribeBtn = () => {
     const subInput = document.querySelector('.footer input');
     subInput.scrollIntoView();
@@ -54,7 +48,7 @@ function Home() {
         
         </Container>
           <div className='subscribe-banner'>
-            <img className='subscribe-bg' src={baseUrl+'images/home.jpg'}></img>
+            <img className='subscribe-bg' src={imgBaseUrl+'1J6cn1Tnc-GfASqhU9twjwjFvNsyKO6Z1'}></img>
             <button className='btn-main' onClick={handleSubcribeBtn}>Subscribe us</button>
           </div>
         <Container>

@@ -1,7 +1,6 @@
 import MenuSort from "./MenuSort";
 import MenuItems from "./MenuItems";
 import { useState } from "react";
-const all = () => {};
 
 function MenuSection({dishesData}){
     const [filtererList, setFiltererList] = useState();

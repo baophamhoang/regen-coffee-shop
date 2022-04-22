@@ -14,6 +14,8 @@ import {
     LEADERS_LOADING
  } from "./actionTypes";
 import { baseUrl } from "../shared/baseUrl";
+import { update, push, child, get } from "firebase/database";
+import getDb from "../firebase/getDb";
 
 // Comment Actions
 export const addComment = (payload) => {
@@ -51,6 +53,26 @@ export const fetchComments = () => (dispatch) => {
       .then(comments => dispatch(addComments(comments)))
       .catch(error => dispatch(commentsFailed(error.message)))
 };
+export const fetchCommentsFB = () => (dispatch) => {    
+    return get(child(getDb(), 'comments'))
+    .then(response => {
+        if (response.exists()) {
+            return response;
+          } else {
+            // var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            // error.response = response;
+            var error = new Error(error.message);
+            throw error;
+          }
+        },
+        error => {
+              var errmess = new Error(error.message);
+              throw errmess;
+        })
+      .then(response => response.val())
+      .then(comments => dispatch(addComments(comments)))
+      .catch(error => dispatch(commentsFailed(error.message)))
+};
 export const postComment = (payload) => (dispatch) => {
     return fetch(baseUrl + 'comments', {
         method: 'POST',
@@ -78,6 +100,33 @@ export const postComment = (payload) => (dispatch) => {
         alert('Your comment could not be posted\nError: '+error.message); 
     });
 }
+export const postCommentFB = (payload) => (dispatch) => {
+    const updates ={};
+    updates['/comments/'+payload.id] = payload;
+    console.log(updates);
+    return update(getDb(), updates)
+    // .then(response => console.log(response));
+    // .then(response => {
+    //     if (response) {
+    //       return response;
+    //     } else {
+    //     //   var error = new Error('Error ' + response.status + ': ' + response.statusText);
+    //     //   error.response = response;
+    //         var error = new Error(error.message)
+    //         throw error;
+    //     }
+    //   },
+    //   error => {
+    //         throw error;
+    //   })
+    // .then(response => response.json())
+    .then(() => dispatch(addComment(payload)))
+    .catch(error =>  { 
+        console.log('post comments ', error.message); 
+        alert('Your comment could not be posted\nError: '+error.message); 
+    });
+}
+
 // Dishes actions
 export const addDishes = (payload) => {
     return ({
@@ -118,11 +167,26 @@ export const fetchDishes = () => (dispatch) => {
     .then (dishes => dispatch(addDishes(dishes)))
     .catch (error => dispatch(dishesFailed(error.message)))
 }
-// Promotion Actions
-// export const fetchFBPromos = () => (dispatch) => {
-//     dispatch(promosLoading());
-//     return fetch()
-// }
+export const fetchDishesFB = () => (dispatch) => {    
+    return get(child(getDb(), 'dishes'))
+    .then(response => {
+        if (response.exists()) {
+            return response;
+          } else {
+            // var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            // error.response = response;
+            var error = new Error(error.message)
+            throw error;
+          }
+        },
+        error => {
+              var errmess = new Error(error.message);
+              throw errmess;
+        })
+      .then(response => response.val())
+      .then(dishes => dispatch(addDishes(dishes)))
+      .catch(error => dispatch(commentsFailed(error.message)))
+};
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading());
 
@@ -144,6 +208,26 @@ export const fetchPromos = () => (dispatch) => {
     .then(promos => dispatch(addPromos(promos)))
     .catch(error => dispatch(promosFailed(error.message)));
 }
+export const fetchPromosFB = () => (dispatch) => {    
+    return get(child(getDb(), 'promotions'))
+    .then(response => {
+        if (response.exists()) {
+            return response;
+          } else {
+            // var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            // error.response = response;
+            var error = new Error(error.message)
+            throw error;
+          }
+        },
+        error => {
+              var errmess = new Error(error.message);
+              throw errmess;
+        })
+      .then(response => response.val())
+      .then(promos => dispatch(addPromos(promos)))
+      .catch(error => dispatch(commentsFailed(error.message)))
+};
 export const promosLoading = () => ({
     type: PROMOS_LOADING
 });
@@ -191,6 +275,17 @@ export const postFeedbacks = (payload) => (dispatch) => {
         alert('Your feedbacks could not be posted\nError: '+error.message); 
     }) 
 }
+export const postFeedbacksFB = (payload) => (dispatch) => {
+    const updates ={};
+    updates['/feedback/'+payload.id] = payload;
+    console.log(updates);
+    return update(getDb(), updates)
+    .then(() => dispatch(addFeedbacks(payload)))
+    .catch(error =>  { 
+        console.log('post comments ', error.message); 
+        alert('Your comment could not be posted\nError: '+error.message); 
+    });
+}
 // Leaders Actions
 export const fetchLeaders = () => (dispatch) => {
     dispatch(leadersLoading);
@@ -214,6 +309,26 @@ export const fetchLeaders = () => (dispatch) => {
         .then(response => dispatch(addLeaders(response)))
         .catch(errorMsg => dispatch(leadersFailed(errorMsg.message)))
 }
+export const fetchLeadersFB = () => (dispatch) => {    
+    return get(child(getDb(), 'leaders'))
+    .then(response => {
+        if (response.exists()) {
+            return response;
+          } else {
+            // var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            // error.response = response;
+            var error = new Error(error.message)
+            throw error;
+          }
+        },
+        error => {
+              var errmess = new Error(error.message);
+              throw errmess;
+        })
+      .then(response => response.val())
+      .then(leaders => dispatch(addLeaders(leaders)))
+      .catch(error => dispatch(commentsFailed(error.message)))
+};
 export const addLeaders = (payload) => {
     return {
         type: ADD_LEADERS,

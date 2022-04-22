@@ -8,7 +8,7 @@ import Footer from "./FooterComponent";
 import { Route, Routes, useParams, useLocation} from 'react-router-dom'
 import {  useDispatch } from 'react-redux'
 import { useEffect } from "react";
-import { fetchDishes, fetchPromos, fetchComments, fetchLeaders } from "../redux/actions";
+import { fetchDishesFB, fetchPromos, fetchCommentsFB, fetchLeaders } from "../redux/actions";
 import SlideRoutes from 'react-slide-routes'
 import  { x_master_key, x_bin_meta } from '../shared/requestHeaders';
 const url = 'https://api.jsonbin.io/v3/b/623dfa657caf5d678371f921/'
@@ -31,10 +31,10 @@ function Main(){
     const dispatch = useDispatch();
     const location = useLocation();
     useEffect(()=>{
-        dispatch(fetchDishes());
-        dispatch(fetchComments());
-        dispatch(fetchPromos());
-        dispatch(fetchLeaders());
+        dispatch(fetchDishesFB());
+        dispatch(fetchCommentsFB());
+        // dispatch(fetchPromos());
+        // dispatch(fetchLeaders());
         // getAPI();
     },[])
     useEffect(()=>{

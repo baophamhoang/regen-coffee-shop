@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { dishesSelector } from "../../redux/selectors";
-import { baseUrl } from "../../shared/baseUrl";
+import { imgBaseUrl } from "../../shared/imgBaseUrl";
 import Slider from 'react-slick'
 import { Card, CardImg, CardImgOverlay, CardBody, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 
 function DishesSlider(){
+  
     const dishesData = useSelector(dishesSelector);
     const settings = {
         dots: true,
@@ -42,12 +43,13 @@ function DishesSlider(){
       };
     return (
         <Slider {...settings} >
-          {dishesData.dishes.map((dish)=>{   
+          {dishesData.dishes.map((dish)=>{  
+            console.log(imgBaseUrl + dish.image); 
               return (
                 <Card className='menu-card '>
                   <div style={{position: 'relative', overflow: 'hidden'}}>
                     <Link to={`/menu/${dish.id}`}>
-                      <CardImg width='100%' src={baseUrl + dish.image} alt={dish.name} />
+                      <CardImg width='100%' src={imgBaseUrl + dish.image} alt={dish.name} />
                       <CardImgOverlay className='menu-card-overlay'>
                         <h3>+See details</h3>
                       </CardImgOverlay>

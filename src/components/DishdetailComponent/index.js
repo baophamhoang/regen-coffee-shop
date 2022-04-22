@@ -9,11 +9,11 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import React, { useState  } from "react";
 import { Control, LocalForm, Errors } from 'react-redux-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { dishesSelector } from '../../redux/selectors'
+import { dishesSelector, commentsSelector } from '../../redux/selectors'
 // import { v4 as uuidv4} from 'uuid';
-import { postComment } from "../../redux/actions";
+import { postCommentFB } from "../../redux/actions";
 import Loading from "../WaitingPages/LoadingComponent";
-import { baseUrl } from '../../shared/baseUrl'
+import { imgBaseUrl } from '../../shared/imgBaseUrl'
 import { FadeTransform } from 'react-animation-components';
 import DishDetailSection from "./DishDetailSection";
 // import css
@@ -25,6 +25,7 @@ const validations = {
     
 function DishDetail({selectedDishId}){   
     const dishesData = useSelector(dishesSelector);
+    const cmtData = useSelector(commentsSelector)
     const dispatch = useDispatch();
     const [isModalOpened, setIsModalOpened] = useState(false);
     
@@ -47,12 +48,11 @@ function DishDetail({selectedDishId}){
         // payload.id = uuidv4();
         payload.date = new Date().toISOString();
         payload.dishId = selectedDish.id;
-        dispatch(postComment(payload));
+        payload.id = cmtData.comments.length;
+        dispatch(postCommentFB(payload));
         setIsModalOpened(!isModalOpened);
     }
-    console.log(selectedDishId);
     const selectedDish = dishesData.dishes.filter( dish => dish.id === parseInt(selectedDishId))[0];
-    console.log(selectedDish);
     if (dishesData.isLoading){
         return ( 
             <div className="container">
@@ -150,7 +150,7 @@ function DishDetail({selectedDishId}){
                             <div className="row mt-md-3 " >
                                 <div className="col-md-5 col-12 m-1">
                                     <Card className='mt-md-5'>
-                                        <CardImg top src={baseUrl + selectedDish.image} alt={selectedDish.name} />
+                                        <CardImg top src={imgBaseUrl + selectedDish.image} alt={selectedDish.name} />
                                         {/* <CardBody>
                                             <CardTitle>{selectedDish.name}</CardTitle>
                                             <CardText>{selectedDish.description}</CardText>

@@ -9,7 +9,6 @@ function Rating({ratings,numofCmts=0}){
     const numberPart = Math.floor(Number((ratings)))||0;
     const decimalPart = Number(ratings) - numberPart;
     const roundedDecimalPart = (decimalPart-0)<Math.abs(decimalPart-0.5)?0:0.5;
-    console.log(numberPart*22+ roundedDecimalPart===0.5?21:0);
 
     return(
         <div>

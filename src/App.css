@@ -1,3 +1,7 @@
+:root{
+  --dark-color: #282c34;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -13,7 +17,7 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--dark-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -83,7 +87,7 @@ img.logo{
 .jumbotron {
   padding: 70px 30px 70px 30px;
   margin:0px auto;
-  background: #9575CD;
+  background: var(--dark-color);
   color:floralwhite;
   margin-bottom: 2rem;
   min-height: 500px;

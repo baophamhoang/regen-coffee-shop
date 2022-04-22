@@ -1,0 +1,1 @@
+export const imgBaseUrl = 'http://drive.google.com/uc?export=view&id=';
