@@ -22,13 +22,6 @@ function Contact() {
         })
     },[]);
     const dispatch = useDispatch();
-    const handleSubmit = (e) => {
-        const payload = {...e};
-        payload.id = uuidv4();
-        payload.date = new Date().toISOString();
-        dispatch(postFeedbacksFB(payload));
-    }
-
     return(
         <div className="container">
             {/* <div className="row">
