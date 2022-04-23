@@ -59,11 +59,11 @@ function Main(){
                 {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
                 <Routes>
                     {/* <SlideRoutes animation='' duration={500} location={location}> */}
-                        <Route path='/' element={<Home/>} />
-                        <Route exact path='/menu' element={<Menu/>} />
-                        <Route path='/menu/:dishId' element={<DishWithId />} />
-                        <Route path='/contactus' element={<Contact/>} />
-                        <Route path='/aboutus' element={<About />} />
+                        <Route path={process.env.PUBLIC_URL+'/'} element={<Home/>} />
+                        <Route exact path={process.env.PUBLIC_URL+'/menu'} element={<Menu/>} />
+                        <Route path={process.env.PUBLIC_URL+'/menu/:dishId'} element={<DishWithId />} />
+                        <Route path={process.env.PUBLIC_URL+'/contactus'} element={<Contact/>} />
+                        <Route path={process.env.PUBLIC_URL+'/aboutus'} element={<About />} />
                         <Route path="*" element={<Home/>}/>
                     {/* </SlideRoutes> */}
                     </Routes>

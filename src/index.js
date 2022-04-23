@@ -12,7 +12,7 @@ import store from './redux/store'
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename='/regen-coffee-shop/'>
       <App />
     </BrowserRouter>
   </Provider>
