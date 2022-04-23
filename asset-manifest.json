@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/regen-coffee-shop/static/css/main.75f73841.chunk.css",
-    "main.js": "/regen-coffee-shop/static/js/main.d972de2b.chunk.js",
-    "main.js.map": "/regen-coffee-shop/static/js/main.d972de2b.chunk.js.map",
+    "main.js": "/regen-coffee-shop/static/js/main.18403465.chunk.js",
+    "main.js.map": "/regen-coffee-shop/static/js/main.18403465.chunk.js.map",
     "runtime-main.js": "/regen-coffee-shop/static/js/runtime-main.656cc3dc.js",
     "runtime-main.js.map": "/regen-coffee-shop/static/js/runtime-main.656cc3dc.js.map",
     "static/css/2.abc479fb.chunk.css": "/regen-coffee-shop/static/css/2.abc479fb.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.abc479fb.chunk.css",
     "static/js/2.ba6aa278.chunk.js",
     "static/css/main.75f73841.chunk.css",
-    "static/js/main.d972de2b.chunk.js"
+    "static/js/main.18403465.chunk.js"
   ]
 }
