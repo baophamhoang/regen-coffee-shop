@@ -44,7 +44,6 @@ function DishesSlider(){
     return (
         <Slider {...settings} >
           {dishesData.dishes.map((dish)=>{  
-            console.log(imgBaseUrl + dish.image); 
               return (
                 <Card className='menu-card '>
                   <div style={{position: 'relative', overflow: 'hidden'}}>

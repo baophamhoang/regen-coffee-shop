@@ -8,11 +8,11 @@ import 'bootstrap-social/bootstrap-social.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store'
-
+import basePath from './shared/baseHomePath'
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <BrowserRouter basename='/regen-coffee-shop/'>
+    <BrowserRouter basename={basePath}>
       <App />
     </BrowserRouter>
   </Provider>

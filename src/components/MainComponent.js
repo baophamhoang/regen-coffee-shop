@@ -10,23 +10,7 @@ import {  useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { fetchDishesFB, fetchPromos, fetchCommentsFB, fetchLeaders } from "../redux/actions";
 import SlideRoutes from 'react-slide-routes'
-import  { x_master_key, x_bin_meta } from '../shared/requestHeaders';
-const url = 'https://api.jsonbin.io/v3/b/623dfa657caf5d678371f921/'
-function getAPI(){
-  fetch(url, {
-    method: 'GET',
-    headers: {
-        "Content-Type": "application/json",
-        "X-Master-Key" : x_master_key,
-        'X-Bin-Meta' :  x_bin_meta
-    },
-    credentials: "same-origin"
-})
-.then( r=> r.json())
-.then( r => console.log(r))
-}
 
-// import BreadcrumbComponent from "./BreadcrumbComponent";
 function Main(){
     const dispatch = useDispatch();
     const location = useLocation();
@@ -59,11 +43,11 @@ function Main(){
                 {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
                 <Routes>
                     {/* <SlideRoutes animation='' duration={500} location={location}> */}
-                        <Route path={process.env.PUBLIC_URL+'/'} element={<Home/>} />
-                        <Route exact path={process.env.PUBLIC_URL+'/menu'} element={<Menu/>} />
-                        <Route path={process.env.PUBLIC_URL+'/menu/:dishId'} element={<DishWithId />} />
-                        <Route path={process.env.PUBLIC_URL+'/contactus'} element={<Contact/>} />
-                        <Route path={process.env.PUBLIC_URL+'/aboutus'} element={<About />} />
+                        <Route path={'/'} element={<Home/>} />
+                        <Route exact path={'/menu'} element={<Menu/>} />
+                        <Route path={'/menu/:dishId'} element={<DishWithId />} />
+                        <Route path={'/contactus'} element={<Contact/>} />
+                        <Route path={'/aboutus'} element={<About />} />
                         <Route path="*" element={<Home/>}/>
                     {/* </SlideRoutes> */}
                     </Routes>
