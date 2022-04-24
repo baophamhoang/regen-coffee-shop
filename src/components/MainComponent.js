@@ -5,29 +5,22 @@ import Contact from "./ContactComponent/";
 import Home from "./HomeComponent/";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import { Route, Routes, useParams, useLocation} from 'react-router-dom'
+import { Route, Routes, useParams} from 'react-router-dom'
 import {  useDispatch } from 'react-redux'
-import { useEffect } from "react";
-import { fetchDishesFB, fetchPromos, fetchCommentsFB, fetchLeaders } from "../redux/actions";
-import SlideRoutes from 'react-slide-routes'
+import {  useEffect } from "react";
+import React from "react";
+import { fetchDishesFB, fetchCommentsFB, } from "../redux/actions";
+import Loading from "./WaitingPages/LoadingComponent";
+// import SlideRoutes from 'react-slide-routes'
 
 function Main(){
     const dispatch = useDispatch();
-    const location = useLocation();
     useEffect(()=>{
         dispatch(fetchDishesFB());
         dispatch(fetchCommentsFB());
-        // dispatch(fetchPromos());
-        // dispatch(fetchLeaders());
-        // getAPI();
-    },[])
-    useEffect(()=>{
-        console.log('re-renderred');
-    })
-
+    },[]);
     function DishWithId(){
         const {dishId} = useParams();
-        console.log(dishId);
         return(
             <DishDetail 
                 selectedDishId={dishId}
@@ -36,7 +29,12 @@ function Main(){
     }
 
     return (
-        <div className="App">
+        <React.Fragment>
+            
+        <div className="waiting-for-app " >
+            <Loading/>
+        </div>
+        <div className="App hidden">
             <Header/>
                 {/* {location.pathname!=='/'?<BreadcrumbComponent></BreadcrumbComponent>:null} */}
             {/* <TransitionGroup > */}
@@ -55,6 +53,7 @@ function Main(){
             {/* </TransitionGroup> */}
             <Footer/>
         </div>
+        </React.Fragment>
     )
 }
 export default Main;

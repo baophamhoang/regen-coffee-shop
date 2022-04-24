@@ -1,10 +1,11 @@
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, 
             Modal, ModalBody, ModalHeader, Button, Label, FormGroup, Input, Form } from "reactstrap";
 import React, {useState} from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHouse, faCircleInfo, faBars, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import logo from '../assets/images/logo.png'
+// import logo from '../assets/images/logo.png'
 
 
 function Header(){
@@ -15,7 +16,6 @@ function Header(){
                 password: '',
                 remember: false
             }
-    const location = useLocation();
     const handleToggleModal = () => {
         setIsModalOpened(!isModalOpened);
     }   
@@ -32,11 +32,11 @@ function Header(){
             <Navbar light expand='md' >
                 <div className="container justify-content-start">
                     <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
-                    <NavbarBrand className=" mr-auto navbar-brand" href="/">
+                    <NavbarBrand className=" mr-auto navbar-brand">
                         <h2 className="logo-font" style={{
                             'transform' : 'translateY(10%)',
                             color: '#636363'
-                     }}>REGEN</h2>
+                     }}><Link className='nav-link nostyle'  to='/'>REGEN</Link></h2>
                      {/* <img src={logo} className='ml-md-5 mr-10' width='80px'/> */}
 
                     </NavbarBrand>

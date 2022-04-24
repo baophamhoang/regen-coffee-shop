@@ -1,8 +1,6 @@
 import SocialIcon from './SocialIconComponent'
 import {Link} from 'react-router-dom'
 import logo from '../assets/images/logo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEnvelope, faPhone} from '@fortawesome/free-solid-svg-icons'
 
 export default function Footer(){
     const handleSubcribeSubmit = (e) =>{
@@ -36,7 +34,7 @@ export default function Footer(){
                     </div>
                 </div>
                 <div className="col-6 col-md-2 align-self-center text-center">
-                    <img src={logo} class='logo'></img>
+                    <img src={logo} className='logo' alt='logo'></img>
                 </div>
 
                 <div className="col-12 col-md-5">
@@ -54,9 +52,9 @@ export default function Footer(){
                             <div className='subcribe-us-box'>
                                 <form onSubmit={handleSubcribeSubmit}>
                                     <div className='form-floating '>
-                                        <input type="email" class='form-control' style={{border: '2px solid', borderRadius: '0'}}  placeholder='you subcribe ?'
+                                        <input type="email" className='form-control' style={{border: '2px solid', borderRadius: '0'}}  placeholder='you subcribe ?'
                                         id='subcribe-us'/>
-                                        <label  for='subcribe-us'>Your E-mail</label>
+                                        <label  htmlFor='subcribe-us'>Your E-mail</label>
                                         <button type='submit' className='btn btn-main btn-subcribe-us btn-danger '>SUBCRIBE</button>
                                     </div>
                                 </form>

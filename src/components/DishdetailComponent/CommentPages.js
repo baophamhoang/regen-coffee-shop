@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 
 function CommentPages({arrPageNumbers, onCmtPageNum, handlePagesBtn} ){
     if (onCmtPageNum===0){onCmtPageNum= arrPageNumbers[arrPageNumbers.length-1]}

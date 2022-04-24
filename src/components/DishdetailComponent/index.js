@@ -1,4 +1,4 @@
-import { Card, CardBody, CardImg, CardTitle, CardText, Container, 
+import { Card, CardImg, Container, 
     Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody,
     Row, Col, Label } from "reactstrap";
 import { Link } from "react-router-dom";

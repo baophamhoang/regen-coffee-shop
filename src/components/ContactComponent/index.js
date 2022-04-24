@@ -5,9 +5,6 @@ import {
     faPhone,
     faEnvelope,
  } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch } from 'react-redux';
-import {  postFeedbacksFB } from '../../redux/actions';
-import { v4 as uuidv4} from 'uuid';
 import FeedBackForm from './FeedbackForm';
 import AddressMap from './MapComponent';
 import './index.css'
@@ -21,7 +18,6 @@ function Contact() {
             behavior: 'auto'
         })
     },[]);
-    const dispatch = useDispatch();
     return(
         <div className="container">
             {/* <div className="row">

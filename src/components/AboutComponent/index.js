@@ -1,27 +1,9 @@
-import React, { useEffect } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import { imgBaseUrl } from '../../shared/imgBaseUrl';
 import { aboutus_2, aboutus_1, coffee } from '../../shared/imgResources';
-import {  child, get } from "firebase/database";
-import getDb from '../../firebase/getDb'
 
 function About() {
-
-    // useEffect(()=>{
-    //     get(child(getDb(), 'comments'))
-    //     .then((s)=>{
-    //         if (s.exists()){
-    //             console.log(s.val());
-    //         } else {
-    //             console.log('error');
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.error(error);
-    //       });
-    // }, [])
-
-
     return(
         <div className="container">
             <div className="row ">
@@ -39,7 +21,7 @@ function About() {
             </div>
             <div className="row row-content align-items-center">
                 <div className="col-12 col-md-8">
-                    <img src={imgBaseUrl+ aboutus_2} width='100%' style={{}}/>
+                    <img src={imgBaseUrl+ aboutus_2} width='100%' alt='aboutus_2.jpg' />
                 </div>
                 <div className="col-12 col-md-4 ">
                     <h2>Our History</h2>
@@ -54,12 +36,12 @@ function About() {
                     <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
                 </div>
                 <div className="col-12 offset-md-1 col-md-7 order-1 order-md-2">
-                    <img src={imgBaseUrl+coffee} width='100%'/>
+                    <img src={imgBaseUrl+coffee} width='100%' alt='coffee.jpg'/>
                 </div>
             </div>
             <div className="row row-content align-items-center">
                 <div className="col-12 col-md-7">
-                    <img src={imgBaseUrl+aboutus_1} width='100%' style={{}}/>
+                    <img src={imgBaseUrl+aboutus_1} width='100%' alt='aboutus_1.jpg'/>
                 </div>
                 <div className="col-12 col-md-5">
                     <h2>Our History</h2>

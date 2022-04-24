@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DishesSlider from './DishesSlider';
 import SocialIcon from '../SocialIconComponent'
 import { Container } from 'reactstrap';
 import { imgBaseUrl } from '../../shared/imgBaseUrl';
 import { bg } from '../../shared/imgResources';
 import './index.css'
+const bgUrl = imgBaseUrl+bg;
 const jumbotronBg = {
-  backgroundImage: `url(${imgBaseUrl+bg})`,
+  // backgroundImage: `url(${imgBaseUrl+bg})`,
   opacity: `0.9`,
   backgroundRepeat: `no-repeat`,
   backgroundSize: `cover`,
@@ -14,10 +15,28 @@ const jumbotronBg = {
   }
 
 function Home() {
+  useEffect(()=>{
+    let preloaderImg= document.createElement("img");
+    preloaderImg.src = bgUrl;
+    preloaderImg.addEventListener('load', (event) => {
+      document.querySelector('.jumbotron').style.backgroundImage = `url(${bgUrl})`;
+      document.querySelector('div.App').classList.add('appear')
+      setTimeout(()=>{
+        document.querySelector('div.App').classList.add('shown')
+      },100)
+      document.querySelector('.waiting-for-app').style.display='none';
+      console.log(document.querySelector('.waiting-for-app'));
+      preloaderImg = null;
+    });
+    
+  },[])
   const handleSubcribeBtn = () => {
     const subInput = document.querySelector('.footer input');
     subInput.scrollIntoView();
     subInput.focus();
+  }
+  const handleOnLoad = () => {
+    
   }
   
   return(
@@ -48,7 +67,7 @@ function Home() {
         
         </Container>
           <div className='subscribe-banner'>
-            <img className='subscribe-bg' src={imgBaseUrl+'1J6cn1Tnc-GfASqhU9twjwjFvNsyKO6Z1'}></img>
+            <img onLoad={handleOnLoad}  className='subscribe-bg' alt='banner' src={imgBaseUrl+'1J6cn1Tnc-GfASqhU9twjwjFvNsyKO6Z1'}></img>
             <button className='btn-main' onClick={handleSubcribeBtn}>Subscribe us</button>
           </div>
         <Container>

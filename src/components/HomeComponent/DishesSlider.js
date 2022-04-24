@@ -43,9 +43,9 @@ function DishesSlider(){
       };
     return (
         <Slider {...settings} >
-          {dishesData.dishes.map((dish)=>{  
+          {dishesData.dishes.map((dish, id)=>{  
               return (
-                <Card className='menu-card '>
+                <Card  key={id} className='menu-card '>
                   <div style={{position: 'relative', overflow: 'hidden'}}>
                     <Link to={`/menu/${dish.id}`}>
                       <CardImg width='100%' src={imgBaseUrl + dish.image} alt={dish.name} />

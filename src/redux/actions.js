@@ -14,7 +14,7 @@ import {
     LEADERS_LOADING
  } from "./actionTypes";
 import { baseUrl } from "../shared/baseUrl";
-import { update, push, child, get } from "firebase/database";
+import { update, child, get } from "firebase/database";
 import getDb from "../firebase/getDb";
 
 // Comment Actions
@@ -246,7 +246,7 @@ export const addFeedbacks = (payload) => {
         payload
     })
 }
-export const postFeedbacks = (payload) => (dispatch) => {
+export const postFeedbacks = (payload) => {
     return fetch(baseUrl + 'feedback', {
         method: 'POST',
         body: JSON.stringify(payload),
