@@ -2,8 +2,22 @@ import React  from 'react';
 import { Link } from 'react-router-dom';
 import { imgBaseUrl } from '../../shared/imgBaseUrl';
 import { aboutus_2, aboutus_1, coffee } from '../../shared/imgResources';
+import Loading from '../WaitingPages/LoadingComponent';
 
 function About() {
+    const handleOnLoad = (e) => {
+        e.target.nextSibling.className = 'hidden';
+        e.target.classList.add('appear');
+        setTimeout(()=>{e.target.classList.add('shown')},100);
+    }
+    const AboutImg = ({imgUrl}) => {
+        return (
+            <div className='about-img'>
+                <img src={imgBaseUrl+imgUrl} className='hidden' onLoad={handleOnLoad} width='100%' alt={imgUrl}></img>
+                <Loading/>
+            </div>
+        )
+    }
     return(
         <div className="container">
             <div className="row ">
@@ -21,7 +35,9 @@ function About() {
             </div>
             <div className="row row-content align-items-center">
                 <div className="col-12 col-md-8">
-                    <img src={imgBaseUrl+ aboutus_2} width='100%' alt='aboutus_2.jpg' />
+                    {/* <img src={imgBaseUrl+ aboutus_2} width='100%' alt='aboutus_2.jpg' /> */}
+                    <AboutImg imgUrl={aboutus_2}/>
+                    
                 </div>
                 <div className="col-12 col-md-4 ">
                     <h2>Our History</h2>
@@ -36,12 +52,14 @@ function About() {
                     <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
                 </div>
                 <div className="col-12 offset-md-1 col-md-7 order-1 order-md-2">
-                    <img src={imgBaseUrl+coffee} width='100%' alt='coffee.jpg'/>
+                    {/* <img src={imgBaseUrl+coffee} width='100%' alt='coffee.jpg'/> */}
+                    <AboutImg imgUrl={coffee}/>
                 </div>
             </div>
             <div className="row row-content align-items-center">
                 <div className="col-12 col-md-7">
-                    <img src={imgBaseUrl+aboutus_1} width='100%' alt='aboutus_1.jpg'/>
+                    {/* <img src={imgBaseUrl+aboutus_1} width='100%' alt='aboutus_1.jpg'/> */}
+                    <AboutImg imgUrl={aboutus_1}/>
                 </div>
                 <div className="col-12 col-md-5">
                     <h2>Our History</h2>

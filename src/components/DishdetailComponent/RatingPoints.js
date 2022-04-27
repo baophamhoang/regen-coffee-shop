@@ -12,7 +12,7 @@ function Rating({ratings,numofCmts=0}){
 
     return(
         <div>
-            <span>Ratings: </span>
+            <b>Ratings: </b>
             <span>
                 <svg height='24px' style={{
                 width:`${numberPart*21+(roundedDecimalPart===0.5?21:0)}`

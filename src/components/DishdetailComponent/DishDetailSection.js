@@ -4,7 +4,7 @@ import Tab from "./DetailTabs";
 import { useSelector } from "react-redux";
 import { commentsSelector } from "../../redux/selectors";
 
-function DishDetailSection({selectedDish, selectedDishId, CommentForm, handleCommentBtnClick}){
+function DishDetailSection({selectedDish, selectedDishId, CommentForm, handleCommentBtnClick, price}){
     const allCmts = useSelector(commentsSelector);
     const cmts = allCmts.comments.filter(cmt=> cmt.dishId === parseInt(selectedDishId));
     const ratings = (cmts.reduce( (total, cmt)=> total+cmt.rating, 0))/cmts.length
@@ -22,10 +22,17 @@ function DishDetailSection({selectedDish, selectedDishId, CommentForm, handleCom
 
     return(
         <div className="tab-detail-section col-md-6 col-12">
-            <div className="mb-3">
-                <h2 className="text-center">{selectedDish.name}</h2>
-                <Rating  ratings={ratings} numofCmts={cmts.length}/>
-                <Tab handleDishDetailBtn={handleDishDetailBtn}/>
+            <div className="mb-3 row">
+                <div className="col-12"><h2 className="text-center">{selectedDish.name}</h2></div>
+                <div className="col-12 col-sm-7">
+                    <Rating  ratings={ratings} numofCmts={cmts.length}/>
+                </div>
+                <div className="col-12 col-sm-5 ">
+                    <div className="tab-detail-price d-inline-block"><b>Price:</b> {price} VND</div>
+                </div>
+                <div className="col-12">
+                    <Tab handleDishDetailBtn={handleDishDetailBtn}/>
+                </div>
             </div>                
             <div className="tab-detail tab-detail-description show">
                 <h4>Description</h4>

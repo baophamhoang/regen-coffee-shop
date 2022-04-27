@@ -31,21 +31,21 @@ function Main(){
     return (
         <React.Fragment>
             
-        <div className="waiting-for-app " >
+        {/* <div className="waiting-for-app " >
             <Loading/>
-        </div>
-        <div className="App hidden">
+        </div> */}
+        <div className="App">
             <Header/>
                 {/* {location.pathname!=='/'?<BreadcrumbComponent></BreadcrumbComponent>:null} */}
             {/* <TransitionGroup > */}
                 {/* <CSSTransition classNames="page" timeout={300} key={location.pathname}> */}
                 <Routes>
                     {/* <SlideRoutes animation='' duration={500} location={location}> */}
-                        <Route path={'/'} element={<Home/>} />
-                        <Route exact path={'/menu'} element={<Menu/>} />
-                        <Route path={'/menu/:dishId'} element={<DishWithId />} />
-                        <Route path={'/contactus'} element={<Contact/>} />
-                        <Route path={'/aboutus'} element={<About />} />
+                        <Route path='/' element={<Home/>} />
+                        <Route exact path='/menu' element={<Menu/>} />
+                        <Route path='/menu/:dishId' element={<DishWithId />} />
+                        <Route path='/contactus' element={<Contact/>} />
+                        <Route path='/aboutus' element={<About />} />
                         <Route path="*" element={<Home/>}/>
                     {/* </SlideRoutes> */}
                     </Routes>

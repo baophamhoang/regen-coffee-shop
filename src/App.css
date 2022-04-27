@@ -14,6 +14,11 @@ body {
   /* font-family: 'Noto Sans JP', sans-serif; */
   /* background-color: ; */
   font-family: 'Poppins', sans-serif!important;
+
+}
+.App{
+  overflow: hidden;
+  margin-top: 94px;
 }
 
 .App-header {
@@ -120,6 +125,16 @@ img.logo{
   padding-right: 0!important;
   margin-right: 15px;
 }
+.navbar{
+  background-color: white;
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
+  /* background-color: #dde6f3; */
+  /* box-shadow: 1px 1px 10px gray; */
+}
+.navbar-scrolling{
+  /* border-bottom: 2px solid; */
+  box-shadow: 1px 1px 10px gray;
+}
 .navbar .nav-link.active{
   border-bottom: solid 2px;
 }
@@ -209,9 +224,14 @@ li.page-btn:hover{
   margin-top: 5px;
   width: 100%;
   padding: 10px 0!important;
-
 }
 
+@media screen and (max-width: 768px) {
+  nav a.nav-link{
+    width: calc(100% - 54px - 54px);
+    text-align: center;
+  }
+}
 
 @keyframes example {
   from {

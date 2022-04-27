@@ -7,7 +7,7 @@ function RenderMenuItem({dish}){
     return (
       <Card className='menu-card'>
         <Link to={`/menu/${dish.id}`}>
-          <CardImg width='100%' src={ imgBaseUrl + dish.image} alt={dish.name} />
+          <CardImg className='slider-img' width='100%' src={ imgBaseUrl + dish.image} alt={dish.name} />
           <CardImgOverlay className='menu-card-overlay'>
             <h3>+See details</h3>
             </CardImgOverlay>  

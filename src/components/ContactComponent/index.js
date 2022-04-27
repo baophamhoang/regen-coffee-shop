@@ -46,13 +46,13 @@ function Contact() {
                             background: 'rgb(248, 247, 245)',
                             textAlign: 'center'
                         }}>17 Nguyen Thiep, Son Tra, Da Nang</p>
-                        <p>
-                            <div className='row'>
-                                <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> 090 5113 444 &nbsp; &nbsp;</div>
-                                <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon><a className='nostyle' style={{color:'inherit'}} href="mailto:confusion@food.net"> regen@gmail.com</a></div>
-                                <div className='col-12 col-lg'><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon><a className='nostyle' style={{color:'inherit'}} href="https://www.facebook.com/regen.coffee.shop"> regen.coffee.shop</a></div>
-                            </div>
-                        </p>
+                        
+                        <div className='row'>
+                            <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon> 090 5113 444 &nbsp; &nbsp;</div>
+                            <div className='col-12 col-lg-auto'><FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon><a className='nostyle' style={{color:'inherit'}} href="mailto:confusion@food.net"> regen@gmail.com</a></div>
+                            <div className='col-12 col-lg'><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon><a className='nostyle' style={{color:'inherit'}} href="https://www.facebook.com/regen.coffee.shop"> regen.coffee.shop</a></div>
+                        </div>
+                        
                         <SocialIcon facebook call mail dark size='2x' style={{
                             'marginRight': '5px'
                         }} />

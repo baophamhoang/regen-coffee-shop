@@ -106,3 +106,6 @@ a#back-to-menu{
 a#back-to-menu:hover{
     transform: translateY(-10px);
 }
+.tab-detail-price{
+    /* border: 2px solid gray; */
+}

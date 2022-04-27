@@ -4,10 +4,12 @@ import SocialIcon from '../SocialIconComponent'
 import { Container } from 'reactstrap';
 import { imgBaseUrl } from '../../shared/imgBaseUrl';
 import { bg } from '../../shared/imgResources';
+import { Link } from 'react-router-dom';
+import CasualSlider from './CasualSlider';
 import './index.css'
 const bgUrl = imgBaseUrl+bg;
 const jumbotronBg = {
-  // backgroundImage: `url(${imgBaseUrl+bg})`,
+  backgroundImage: `url(${bgUrl})`,
   opacity: `0.9`,
   backgroundRepeat: `no-repeat`,
   backgroundSize: `cover`,
@@ -15,21 +17,19 @@ const jumbotronBg = {
   }
 
 function Home() {
-  useEffect(()=>{
-    let preloaderImg= document.createElement("img");
-    preloaderImg.src = bgUrl;
-    preloaderImg.addEventListener('load', (event) => {
-      document.querySelector('.jumbotron').style.backgroundImage = `url(${bgUrl})`;
-      document.querySelector('div.App').classList.add('appear')
-      setTimeout(()=>{
-        document.querySelector('div.App').classList.add('shown')
-      },100)
-      document.querySelector('.waiting-for-app').style.display='none';
-      console.log(document.querySelector('.waiting-for-app'));
-      preloaderImg = null;
-    });
-    
-  },[])
+  // useEffect(()=>{
+  //   let preloaderImg= document.createElement("img");
+  //   preloaderImg.src = bgUrl;
+  //   preloaderImg.addEventListener('load', (event) => {
+  //     document.querySelector('.jumbotron').style.backgroundImage = `url(${bgUrl})`;
+  //     document.querySelector('div.App').classList.add('appear')
+  //     setTimeout(()=>{
+  //       document.querySelector('div.App').classList.add('shown')
+  //     },100)
+  //     // document.querySelector('.waiting-for-app').style.display='none';
+  //     preloaderImg = null;
+  //   })
+  // },[])
   const handleSubcribeBtn = () => {
     const subInput = document.querySelector('.footer input');
     subInput.scrollIntoView();
@@ -72,12 +72,18 @@ function Home() {
           </div>
         <Container>
         <div className='row row-content text-center '>
-          <h3>What to try</h3>
-          <DishesSlider/>
+          <div>
+            <h3>What to try</h3>
+            <DishesSlider/>
+          </div>
+           {/* <div className='more-to-menu'>
+            <Link className='nostyle' to={`/menu/`}>More</Link>
+          </div> */}
         </div>
+       
         <div className='row row-content text-center'>
           <h3><SocialIcon facebook size='2x'/>/regen.coffee.shop</h3>
-          <DishesSlider/>
+          <CasualSlider/>
         </div>
         {/* <div className="row row-content align-content-center text-center">
             <h3 className='col-12'>Meet us at 17 Nguyen Thiep, Son Tra, Da Nang</h3>

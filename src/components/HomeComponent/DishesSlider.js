@@ -22,7 +22,7 @@ function DishesSlider(){
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
-            // centerMode: true,
+            centerMode: true,
           }
     
         }, 
@@ -43,12 +43,12 @@ function DishesSlider(){
       };
     return (
         <Slider {...settings} >
-          {dishesData.dishes.map((dish, id)=>{  
+          {dishesData.dishes.filter(dish=>dish.featured).map((dish, id)=>{  
               return (
                 <Card  key={id} className='menu-card '>
                   <div style={{position: 'relative', overflow: 'hidden'}}>
                     <Link to={`/menu/${dish.id}`}>
-                      <CardImg width='100%' src={imgBaseUrl + dish.image} alt={dish.name} />
+                      <CardImg className='slider-img' src={imgBaseUrl + dish.image} alt={dish.name} />
                       <CardImgOverlay className='menu-card-overlay'>
                         <h3>+See details</h3>
                       </CardImgOverlay>

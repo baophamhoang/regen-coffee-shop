@@ -15,7 +15,7 @@ function MenuSection({dishesData}){
               <div className="row mt-2 justify-content-center">
                 <MenuSort handleTypeClick={handleTypeClick}/>
               </div>
-              <div className="row row-content justify-content-between">
+              <div className="row row-content justify-content-start">
                 <MenuItems dishesData={filtererList||dishesData} />   
               </div>   
           </div>

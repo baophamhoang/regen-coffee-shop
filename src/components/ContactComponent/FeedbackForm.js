@@ -93,47 +93,47 @@ function FeedBackForm(){
         <form key='feedback-form' onSubmit={handleSubmit} >
             <div className="row">     
                 <div className="col-12 col-md">
-                    <div class="form-floating mb-3">
-                        <input type="text" class={`form-control`} onInput={handleInputChange} 
+                    <div className="form-floating mb-3">
+                        <input type="text" className={`form-control`} onInput={handleInputChange} 
                             onBlur={handleBlur} name="firstname" id="feedback-firstname" placeholder='Your firstname' required/>
-                        <label for="feedback-name">Firstname</label>
+                        <label htmlFor="feedback-name">Firstname</label>
                         <i className='feedback-error-msg'>{<ErrorMsg validations={errors.firstname}/>||''}</i>
                     </div>
                 </div>
                 <div className="col-12 col-md">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="lastname" id="feedback-lastname" placeholder='Your lastname' required/>
-                        <label for="feedback-lastname">Surname</label>
+                    <div className="form-floating mb-3">
+                        <input type="text" className="form-control" onInput={handleInputChange} onBlur={handleBlur} name="lastname" id="feedback-lastname" placeholder='Your lastname' required/>
+                        <label htmlFor="feedback-lastname">Surname</label>
                         <i className='feedback-error-msg'>{<ErrorMsg validations={errors.lastname}/>||''}</i>
                     </div>
                 </div>
             </div>
             <div className="row">
                 <div className="col-12 col-md">
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="email" id="feedback-email" placeholder='Your email' required/>
-                        <label for="feedback-email">Email</label>
+                    <div className="form-floating mb-3">
+                        <input type="email" className="form-control" onInput={handleInputChange} onBlur={handleBlur} name="email" id="feedback-email" placeholder='Your email' required/>
+                        <label htmlFor="feedback-email">Email</label>
                         <i className='feedback-error-msg'>{<ErrorMsg validations={errors.email}/>||''}</i>
                     </div>
                 </div>
                 <div className="col-12 col-md">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="phone" id="feedback-number" placeholder='Your number'/>
-                        <label for="feedback-number">Tel number (Optional)</label>
+                    <div className="form-floating mb-3">
+                        <input type="text" className="form-control" onInput={handleInputChange} onBlur={handleBlur} name="phone" id="feedback-number" placeholder='Your number'/>
+                        <label htmlFor="feedback-number">Tel number (Optional)</label>
                         <i className='feedback-error-msg'>{<ErrorMsg validations={errors.phone}/>||''}</i>
                     </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-                <textarea class="form-control" onInput={handleInputChange} onBlur={handleBlur} name="feedback" id="feedback-textarea" placeholder='Your feedback' required style={{
+            <div className="form-floating mb-3">
+                <textarea className="form-control" onInput={handleInputChange} onBlur={handleBlur} name="feedback" id="feedback-textarea" placeholder='Your feedback' required style={{
                     minHeight: '200px'
                 }}></textarea>
-                <label for="feedback-textarea">Your feedback</label> 
+                <label htmlFor="feedback-textarea">Your feedback</label> 
                 <i className='feedback-error-msg'>{<ErrorMsg validations={errors.feedback}/>||''}</i>
             </div>
             <div className="row">
                 <div className="col-6 offset-3 text-center">
-                    <button type="submit" class="feedback-btn btn-secondary" style={{
+                    <button type="submit" className="feedback-btn btn-secondary" style={{
                         width: '100%'
                     }}>Submit</button>
                 </div>

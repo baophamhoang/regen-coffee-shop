@@ -1,6 +1,6 @@
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, 
             Modal, ModalBody, ModalHeader, Button, Label, FormGroup, Input, Form } from "reactstrap";
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef, useLayoutEffect} from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,8 +9,39 @@ import { NavLink } from "react-router-dom";
 
 
 function Header(){
+    const [scrolling, setScrolling] = useState(false );
+    const refRef = useRef(null);
     const [isNavOpened, setIsNavOpened] = useState(false);
     const [isModalOpened, setIsModalOpened] = useState(false);
+    useEffect(()=>{
+        console.log(refRef);
+    },
+    [])
+    const onScroll = () => {
+        const scrollPos = window.scrollY;
+            if (scrollPos>20){
+                setScrolling(true);
+            }
+            else {
+                setScrolling(false);
+            }
+    }
+    // useEffect(()=>{
+    //     window.onload = () => {
+    //         console.log(scrolling);
+    //     console.log(window.pageYOffset);
+    //     if (window.pageYOffset>50){
+    //         setScrolling(true);
+    //     }
+    //     else {
+    //         setScrolling(false);
+    //     }
+    //     }
+    // },[])
+    useLayoutEffect(()=>{
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
+    })
     const login = {
                 username: '',
                 password: '',
@@ -29,17 +60,15 @@ function Header(){
 
     return (
         <React.Fragment>
-            <Navbar light expand='md' >
-                <div className="container justify-content-start">
+            <Navbar className={scrolling?'navbar-scrolling': ''} light fixed='top' expand='md' >
+                <div ref={refRef} className="container justify-content-start">
                     <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
-                    <NavbarBrand className=" mr-auto navbar-brand">
+                    <Link className='nav-link nostyle mr-auto navbar-brand text-md-center'  to='/' >
                         <h2 className="logo-font" style={{
-                            'transform' : 'translateY(10%)',
-                            color: '#636363'
-                     }}><Link className='nav-link nostyle'  to='/'>REGEN</Link></h2>
+                        'transform' : 'translateY(10%)',
+                        color: '#636363'
+                        }}>REGEN</h2></Link>
                      {/* <img src={logo} className='ml-md-5 mr-10' width='80px'/> */}
-
-                    </NavbarBrand>
                     <Collapse className='ml-3 flex-row-reverse' isOpen={isNavOpened} navbar>
                         <Nav navbar>
                             <NavItem>

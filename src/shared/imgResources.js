@@ -5,4 +5,9 @@ export const bg = '1GtVfgUB8bDtMOJlYsoWIQ0W2grtOFhST';
 export const jumbotron = '11Ip1-tZNIc1kNbZMfLBiFu92znrKE-kJ';
 export const home = '1J6cn1Tnc-GfASqhU9twjwjFvNsyKO6Z1';
 export const coffee = '1VyhNPcLpgfVGuDkwc8trDqxxZHkq_lmQ';
-
+export const casual_1= '1zLfQ--Mpzwxp2IaMt2xcYLhw3nGrn20k';
+export const casual_2= '1bqIMrRfh2gGfJhIpu7_Hs6EuJ0OyCn2t';
+export const casual_3= '1VWXPRUSWd126oegQvbdD-j9C1ROFSGtq';
+export const casual_4= '1AvRl-Oc4_QGONhKsNOqXAvrokvCpAxnz';
+export const casual_5= '1_TfSd4ofsxblb4AdONJDM8h2uir-T1s9';
+export const casual_6= '14D9SUqm_HD1r42qSa7j_XYvD37Q7k-rh';

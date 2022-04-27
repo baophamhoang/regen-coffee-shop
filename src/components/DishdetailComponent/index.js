@@ -158,7 +158,7 @@ function DishDetail({selectedDishId}){
                                     </Card>
                                         
                                 </div>
-                                <DishDetailSection selectedDish={selectedDish} selectedDishId={selectedDishId}  
+                                <DishDetailSection selectedDish={selectedDish} price={selectedDish.price} selectedDishId={selectedDishId}  
                                     CommentForm={CommentForm} handleCommentBtnClick={handleCommentBtnClick}/>
                             </div>
                                 <div className="col-md-5 col-12 m-1">
