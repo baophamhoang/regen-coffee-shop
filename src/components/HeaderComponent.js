@@ -1,11 +1,11 @@
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, 
             Modal, ModalBody, ModalHeader, Button, Label, FormGroup, Input, Form } from "reactstrap";
 import React, {useState, useEffect, useRef, useLayoutEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHouse, faCircleInfo, faBars, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-// import logo from '../assets/images/logo.png'
+import logo from '../assets/images/logo.png'
 
 
 function Header(){
@@ -13,10 +13,16 @@ function Header(){
     const refRef = useRef(null);
     const [isNavOpened, setIsNavOpened] = useState(false);
     const [isModalOpened, setIsModalOpened] = useState(false);
+    const [currentPage, setcurrentPage] = useState();
+    const location = useLocation();
     useEffect(()=>{
         console.log(refRef);
     },
     [])
+    useEffect(()=>{
+        setIsNavOpened(false)
+    },
+    [location])
     const onScroll = () => {
         const scrollPos = window.scrollY;
             if (scrollPos>20){
@@ -26,18 +32,6 @@ function Header(){
                 setScrolling(false);
             }
     }
-    // useEffect(()=>{
-    //     window.onload = () => {
-    //         console.log(scrolling);
-    //     console.log(window.pageYOffset);
-    //     if (window.pageYOffset>50){
-    //         setScrolling(true);
-    //     }
-    //     else {
-    //         setScrolling(false);
-    //     }
-    //     }
-    // },[])
     useLayoutEffect(()=>{
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
@@ -60,49 +54,112 @@ function Header(){
 
     return (
         <React.Fragment>
-            <Navbar className={scrolling?'navbar-scrolling': ''} light fixed='top' expand='md' >
-                <div ref={refRef} className="container justify-content-start">
-                    <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
+            <Navbar className={scrolling?'navbar-scrolling': ''} light fixed='top' expand='md'>
+            <div ref={refRef} className="container justify-content-start">
+                <div className="navbar-links-left">
+                    <div className="navbar-links-container">
+                        <div className="navbar-links">
+                            <Link className={`nav-link ${location.pathname==='/'?'active':''}`} to='/' aria-current="page">Home</Link>
+                        </div>
+                        <div className="navbar-links">
+                            <Link className={`nav-link ${location.pathname==='/aboutus'?'active':''}`} to='/aboutus'>About us</Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="navbar-logo">
                     <Link className='nav-link nostyle mr-auto navbar-brand text-md-center'  to='/' >
-                        <h2 className="logo-font" style={{
-                        'transform' : 'translateY(10%)',
-                        color: '#636363'
-                        }}>REGEN</h2></Link>
-                     {/* <img src={logo} className='ml-md-5 mr-10' width='80px'/> */}
+                        <img src={logo} className='ml-md-5 mr-10' width='100px'/>
+                    </Link>
+                </div>
+                <div className="navbar-links-right">
+                    <div className="navbar-links-container">
+                        <div className="navbar-links">
+                            <Link className={`nav-link ${location.pathname==='/menu'?'active':''}`} to='/menu'>Menu</Link>
+                        </div>
+                        <div className="navbar-links">
+                            <Link className={`nav-link ${location.pathname==='/contactus'?'active':''}`} to='/contactus'>Contact us</Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="navbar-collapse-menu">
+                    <div>
+                        <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
+                    </div>
                     <Collapse className='ml-3 flex-row-reverse' isOpen={isNavOpened} navbar>
                         <Nav navbar>
                             <NavItem>
                                 <NavLink className='nav-link' to='/'>
-                                    {/* <FontAwesomeIcon size="lg" icon={faHouse}/>  */}
                                     Home
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className='nav-link' to='/aboutus'>
-                                    {/* <FontAwesomeIcon size="lg" icon={faCircleInfo}/>  */}
                                     About us
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className='nav-link' to='/menu'>
-                                    {/* <FontAwesomeIcon size="lg" icon={faBars}/>  */}
                                     Menu
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className='nav-link' to='/contactus'>
-                                    {/* <FontAwesomeIcon size="lg" icon={faAddressBook}/>  */}
                                     Contact us
                                 </NavLink>
                             </NavItem>
                         </Nav>
-                        {/* Login Button */}
+                    </Collapse>
                         {/* <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <Button outline onClick={handleToggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
                             </NavItem>
                         </Nav> */}
+                </div>
+                {/* <div ref={refRef} className="container justify-content-start">
+                    <NavbarToggler style={{border:'none'}} onClick={()=>{setIsNavOpened(!isNavOpened)}} className='' />
+                    
+                    <Collapse className='ml-3 flex-row-reverse' isOpen={isNavOpened} navbar>
+                        <Nav navbar>
+                            <NavItem>
+                                <NavLink className='nav-link' to='/'>
+                                    Home
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className='nav-link' to='/aboutus'>
+                                    About us
+                                </NavLink>
+                            </NavItem>
+                            </Nav>
+                            </Collapse>
+                            <Link className='nav-link nostyle mr-auto navbar-brand text-md-center'  to='/' >
+                        <h2 className="logo-font" style={{
+                        'transform' : 'translateY(10%)',
+                        color: '#636363'
+                        }}>REGEN</h2>
+                        <img src={logo} className='ml-md-5 mr-10' width='100px'/>
+                        </Link>
+                     
+                            <Collapse className='ml-3 flex-row' isOpen={isNavOpened} navbar>
+                                <Nav navbar>
+                            <NavItem>
+                                <NavLink className='nav-link' to='/menu'>
+                                    Menu
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className='nav-link' to='/contactus'>
+                                    Contact us
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <Button outline onClick={handleToggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+                            </NavItem>
+                        </Nav>
                     </Collapse>
+                </div> */}
                 </div>
             </Navbar>
             

@@ -7,6 +7,8 @@ import { bg } from '../../shared/imgResources';
 import { Link } from 'react-router-dom';
 import CasualSlider from './CasualSlider';
 import './index.css'
+import logo from '../../assets/images/logo.png'
+
 const bgUrl = imgBaseUrl+bg;
 const jumbotronBg = {
   backgroundImage: `url(${bgUrl})`,
@@ -46,6 +48,8 @@ function Home() {
             <div className="row row-header">
                 <div className="col-12 col-sm-8">
                   <h1 className='logo-font'>REGEN</h1>
+                  
+                   {/* <img src={logo} className='ml-md-5 mr-10' width='120px '/> */}
                   <p >We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
                 </div>
                 <div className="ml-2 col-sm-6 col-12 align-self-center">
