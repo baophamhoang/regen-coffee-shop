@@ -137,7 +137,6 @@ img.logo{
 .navbar{
   background-color: white;
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
-  position: relative;
   display: flex;
   height: 90px;
   /* background-color: #dde6f3; */
