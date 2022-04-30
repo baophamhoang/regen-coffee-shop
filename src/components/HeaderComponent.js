@@ -54,7 +54,7 @@ function Header(){
 
     return (
         <React.Fragment>
-            <Navbar className={scrolling?'navbar-scrolling': ''} light fixed='top' expand='md'>
+            <Navbar className={`noselect ${scrolling?'navbar-scrolling': ''}`} light fixed='top' expand='md'>
             <div ref={refRef} className="container justify-content-start">
                 <div className="navbar-links-left">
                     <div className="navbar-links-container">
